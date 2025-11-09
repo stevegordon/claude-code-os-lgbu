@@ -1,0 +1,56 @@
+# Environment files
+.env
+.env.*
+credentials.json
+token.json
+
+# API keys and secrets
+*.key
+*.pem
+*.cert
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Log files (EXCEPTION: operations_log.txt is tracked)
+*.log
+logs/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# User-specific customizations that shouldn't be shared
+.claude/settings.local.json
+
+# Member's personal work (they populate these, not shared back)
+AI Growth Engine/Knowledge Base/*
+!AI Growth Engine/Knowledge Base/.gitkeep
+Project Memory/*
+!Project Memory/README.md
+!Project Memory/_Templates/
+Active Projects/*
+!Active Projects/README.md
+!Active Projects/_Templates/
+!Active Projects/_Incubator/.gitkeep

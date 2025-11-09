@@ -1,0 +1,10 @@
+# Operations Log
+
+This file tracks business operations activity automatically.
+
+Format: [YYYY-MM-DD HH:MM:SS] - [ACTION] - [project-name] - [details]
+
+Actions: CREATE, UPDATE, SYNC, COMPLETE, GRADUATE, ARCHIVE, SYSTEM_UPGRADE
+
+---
+
