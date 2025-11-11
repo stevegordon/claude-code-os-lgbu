@@ -408,13 +408,20 @@ When working at ROOT level:
 **Trigger**: "Generate daily roadmap" OR "Plan my day" OR "What should I work on today?"
 
 **Process**:
-1. Parse operations_log.txt for yesterday's entries
-2. Read Active Projects Index for current status
-3. Find files modified yesterday
-4. Read yesterday's assessment (if exists)
-5. Read latest strategic planning
-6. Infer unfinished work automatically
-7. Generate prioritized roadmap (4 tiers)
+1. **CRITICAL STALENESS CHECK**: Before data extraction, check Active Projects Index staleness
+   - Calculate days since last sync (most recent file modification in `Project Memory/Active Projects Index/`)
+   - **If >14 days stale** (CRITICAL): Prompt to sync NOW (blocks roadmap generation)
+   - **If 7-14 days stale** (WARNING): Proceed with warning in System Alerts
+   - **If <7 days stale**: Proceed normally
+2. Parse operations_log.txt for yesterday's entries
+   - **Smart Event Detection**: Flag CREATE/GRADUATE/COMPLETE entries for sync offer
+3. Read Active Projects Index for current status
+4. Find files modified yesterday
+5. Read yesterday's assessment (if exists)
+6. Read latest strategic planning
+7. Infer unfinished work automatically
+8. Generate prioritized roadmap (4 tiers)
+9. If Smart Event Detection flagged: Offer to sync indices
 
 **Roadmap Structure**:
 - **Tier 1 (Momentum)**: Unfinished work from yesterday
@@ -439,6 +446,7 @@ When working at ROOT level:
 6. Generate assessment with scoring
 7. Identify patterns
 8. Define tomorrow's priorities
+9. **Conditional Index Sync Offer**: If indices >7 days stale AND work completed today, offer to sync
 
 **Assessment Components**:
 - Work completed (deliverables, time, OOBG alignment)
@@ -457,12 +465,15 @@ When working at ROOT level:
 **Trigger**: "Update strategic planning" OR "Weekly strategic review"
 
 **Process**:
-1. Read previous strategic planning
-2. Read last 7 days' data (logs, assessments, roadmaps)
-3. Challenge and consolidate priorities
-4. Generate updated strategic plan
-5. Set weekly goals
-6. Identify blockers
+1. **VALIDATE INDEX CURRENCY**: Before reading data, check Active Projects Index staleness
+   - **If >7 days stale**: STOP and prompt to sync (BLOCKING - using stale data produces wrong analysis)
+   - **If <7 days stale**: Proceed normally
+2. Read previous strategic planning
+3. Read last 7 days' data (logs, assessments, roadmaps)
+4. Challenge and consolidate priorities
+5. Generate updated strategic plan
+6. Set weekly goals
+7. Identify blockers
 
 ---
 
