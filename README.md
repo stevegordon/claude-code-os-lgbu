@@ -290,28 +290,33 @@ git pull origin main
 
 ## Getting Updates
 
-**When new features are released**:
+**When Daron releases new system improvements**, you can update your local system WITHOUT losing your business customizations.
 
-1. **Commit your local work first** (preserve your changes):
-   ```bash
-   git add .
-   git commit -m "My local work before update"
-   ```
+### Quick Update (5 Minutes)
 
-2. **Pull updates from GitHub**:
-   ```bash
-   git pull origin main
-   ```
+See [UPDATE_QUICK_REFERENCE.md](UPDATE_QUICK_REFERENCE.md) for step-by-step commands.
 
-3. **Resolve conflicts** (if any):
-   - Git will tell you which files conflict
-   - Edit conflicting files to keep your customizations
-   - Commit the merge: `git commit -m "Merged updates with local work"`
+**TL;DR**:
+1. Backup your work
+2. Fetch upstream changes
+3. Take framework files (scripts, system docs)
+4. Keep your business files (projects, knowledge base)
+5. Manually merge CLAUDE.md (framework sections FROM upstream, business sections KEEP local)
+6. Test and commit
 
-4. **Test the update**:
-   - Generate a daily roadmap (verify system still works)
-   - Check for new files in folder structure
-   - Read release notes (if provided in GitHub Releases)
+### Detailed Update Guide
+
+See [PRODUCT_UPDATE_PROTOCOL.md](PRODUCT_UPDATE_PROTOCOL.md) for:
+- File classification system (what to update vs. preserve)
+- 3-layer architecture (Framework, Config, Hybrid)
+- Conflict resolution examples
+- Troubleshooting common issues
+
+**Key Principle**: Updates are SAFE because CLAUDE.md uses section markers:
+- `<!-- FRAMEWORK SECTION -->` = Take Daron's improvements
+- `<!-- CUSTOMER SECTION -->` = Keep your business content
+
+**Result**: You get system upgrades without overwriting your work
 
 ---
 

@@ -1,5 +1,10 @@
 # CLAUDE.md - Business Operations Assistant
 
+<!-- ========================================================================== -->
+<!-- FRAMEWORK SECTION - SYNC FROM UPSTREAM                                    -->
+<!-- When updating from Daron's repo, TAKE these sections (system mechanics)   -->
+<!-- ========================================================================== -->
+
 ## PROJECT MISSION & IDENTITY
 
 You are Claude Code working on a **Business Operations** project - the operational layer where the business owner executes daily business activities. Your mission is to help manage, organize, track, and leverage all business projects while ensuring strategic alignment with business goals.
@@ -431,6 +436,11 @@ Ensure every project serves your strategic goals, leverages your unique strength
 Identify what works, spot trends, surface opportunities, and provide data-driven recommendations for business growth.
 
 ---
+
+<!-- ========================================================================== -->
+<!-- CUSTOMER SECTION - NEVER OVERWRITE                                        -->
+<!-- When updating from Daron's repo, KEEP your local version (your business)  -->
+<!-- ========================================================================== -->
 
 ## AI GROWTH ENGINE KNOWLEDGE BASE
 
