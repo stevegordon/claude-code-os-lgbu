@@ -71,6 +71,354 @@ This guide contains lessons learned from implementation:
 
 ---
 
+## WINDOWS POWERSHELL COMMAND PATTERNS
+
+**Shell Environment**: Claude Code Bash tool uses your system's **default shell** (PowerShell on Windows, zsh on macOS, bash on Linux). No shell configuration options exist in settings.json (feature request GitHub #7490).
+
+**Windows Reality**: PowerShell is the system default on Windows 10/11. All Bash tool commands execute in PowerShell context.
+
+**Critical Rule**: DO NOT use Windows CMD commands (`dir`, `findstr`, `forfiles`) directly in Bash tool calls. They fail in Git Bash environment and cause syntax errors.
+
+### Recommended Approach: Explicit PowerShell Invocation
+
+**Pattern**: Always invoke PowerShell explicitly via `powershell -Command "..."`
+
+**Why**: Works reliably across CMD, PowerShell, and Git Bash environments.
+
+### Common Data Extraction Patterns
+
+#### 1. List Files Sorted by Date (Index Staleness Checks)
+
+**DON'T USE** (fails in Git Bash):
+```bash
+dir "Project Memory\Active Projects Index\*-index.md" /b /o-d
+```
+
+**USE THIS** (works everywhere):
+```powershell
+powershell -Command "Get-ChildItem 'Project Memory\Active Projects Index\*-index.md' -File | Sort-Object LastWriteTime -Descending | Select-Object -ExpandProperty FullName"
+```
+
+#### 2. Search Text with Date Pattern (Operations Log Parsing)
+
+**DON'T USE** (fails in Git Bash):
+```bash
+findstr /r "^\[2025-11-14" operations_log.txt
+```
+
+**USE THIS** (works everywhere):
+```powershell
+powershell -Command "Select-String -Path 'operations_log.txt' -Pattern '^\[2025-11-14' | Select-Object -ExpandProperty Line"
+```
+
+**Note**: Use `-SimpleMatch` for literal strings (no regex):
+```powershell
+powershell -Command "Select-String -Path 'operations_log.txt' -Pattern '2025-11-14' -SimpleMatch"
+```
+
+#### 3. Find Files Modified Yesterday (File Modification Detection)
+
+**DON'T USE** (fails in Git Bash):
+```bash
+dir /s /b /a-d | findstr "2025-11-13"
+```
+
+**USE THIS** (works everywhere):
+```powershell
+powershell -Command "Get-ChildItem -Path 'Active Projects','Project Memory' -Recurse -File | Where-Object { $_.LastWriteTime -ge '2025-11-13' -and $_.LastWriteTime -lt '2025-11-14' } | Select-Object -ExpandProperty FullName"
+```
+
+**Dynamic Date** (yesterday):
+```powershell
+powershell -Command "$yesterday = (Get-Date).AddDays(-1).ToString('yyyy-MM-dd'); Get-ChildItem -Path 'Active Projects','Project Memory' -Recurse -File | Where-Object { $_.LastWriteTime -ge $yesterday } | Select-Object -ExpandProperty FullName"
+```
+
+#### 4. Calculate Days Since Timestamp (Staleness Calculation)
+
+**Pattern**: Read .last_sync file, parse date, calculate difference
+
+```powershell
+powershell -Command "$content = Get-Content 'Project Memory\Active Projects Index\.last_sync' -Raw; $lastSync = [datetime]::ParseExact($content.Trim(), 'yyyy-MM-dd HH:mm:ss', $null); $daysSince = (New-TimeSpan -Start $lastSync -End (Get-Date)).Days; Write-Output $daysSince"
+```
+
+**Error Handling** (if file missing):
+```powershell
+powershell -Command "if (Test-Path 'Project Memory\Active Projects Index\.last_sync') { $content = Get-Content 'Project Memory\Active Projects Index\.last_sync' -Raw; $lastSync = [datetime]::ParseExact($content.Trim(), 'yyyy-MM-dd HH:mm:ss', $null); $daysSince = (New-TimeSpan -Start $lastSync -End (Get-Date)).Days; Write-Output $daysSince } else { Write-Output 999 }"
+```
+
+#### 5. Write Timestamp to File (Update .last_sync)
+
+**Pattern**: Write current timestamp in ISO 8601 format
+
+```powershell
+powershell -Command "Get-Date -Format 'yyyy-MM-dd HH:mm:ss' | Out-File 'Project Memory\Active Projects Index\.last_sync' -Encoding UTF8 -NoNewline"
+```
+
+**Why `-NoNewline`**: Prevents extra blank line at end of file (cleaner for parsing).
+
+#### 6. Parse Last 7 Days of Log Entries (Weekly Strategic Planning)
+
+**Pattern**: Dynamic date calculation + pattern matching
+
+```powershell
+powershell -Command "$startDate = (Get-Date).AddDays(-7).ToString('yyyy-MM-dd'); Select-String -Path 'operations_log.txt' -Pattern \"^\[$startDate\" | Select-Object -ExpandProperty Line"
+```
+
+**For all dates in last 7 days** (more flexible):
+```powershell
+powershell -Command "$sevenDaysAgo = (Get-Date).AddDays(-7); Select-String -Path 'operations_log.txt' -Pattern '^\[' | Where-Object { $_.Line -match '^\[(\d{4}-\d{2}-\d{2})' -and [datetime]::ParseExact($matches[1], 'yyyy-MM-dd', $null) -ge $sevenDaysAgo } | Select-Object -ExpandProperty Line"
+```
+
+### PowerShell Best Practices
+
+**1. Quoting Rules**:
+- Single quotes `'...'` for literal strings (no variable expansion)
+- Double quotes `"..."` for strings with variables
+- Escape nested quotes: `\"` inside outer double quotes
+
+**2. Path Separators**:
+- Use Windows backslashes `\` in PowerShell paths (NOT forward slashes `/`)
+- Example: `'Project Memory\Active Projects Index\.last_sync'` (CORRECT)
+- Example: `'Project Memory/Active Projects Index/.last_sync'` (WRONG in PowerShell)
+
+**3. Error Handling**:
+- Add `Test-Path` checks before file operations
+- Use `-ErrorAction SilentlyContinue` to suppress non-critical errors
+- Provide fallback values (e.g., `Write-Output 999` for missing .last_sync)
+
+**4. Output Format**:
+- Use `| Select-Object -ExpandProperty [PropertyName]` to get plain text (not objects)
+- Example: `Select-Object -ExpandProperty FullName` → file paths as strings
+- Example: `Select-Object -ExpandProperty Line` → log lines as strings
+
+### Alternative: Use Read Tool for File Operations
+
+**When possible**, prefer Read tool over Bash/PowerShell for file reads:
+
+**PowerShell approach**:
+```powershell
+powershell -Command "Get-Content 'Project Memory\Active Projects Index\.last_sync'"
+```
+
+**Read tool approach** (simpler, more reliable):
+```
+Read: Project Memory/Active Projects Index/.last_sync
+```
+
+**Rule**: Use Read tool for **reading files**, use PowerShell for **file operations** (listing, filtering, date calculations).
+
+### Glob Tool for File Discovery
+
+**When finding files by pattern**, prefer Glob tool over PowerShell:
+
+**PowerShell approach**:
+```powershell
+powershell -Command "Get-ChildItem 'Project Memory\Active Projects Index\*-index.md'"
+```
+
+**Glob tool approach** (simpler):
+```
+Glob: Project Memory/Active Projects Index/*-index.md
+```
+
+**Rule**: Use Glob for **file pattern matching**, use PowerShell for **date filtering** and **complex queries**.
+
+### Summary: Tool Selection Matrix
+
+| Task | Tool | Example |
+|------|------|---------|
+| Read file content | Read tool | `Read: path/to/file.md` |
+| Find files by pattern | Glob tool | `Glob: path/*-index.md` |
+| Filter files by date | PowerShell | `Get-ChildItem ... | Where-Object { $_.LastWriteTime -ge '2025-11-13' }` |
+| Parse log by date | PowerShell | `Select-String -Path 'operations_log.txt' -Pattern '^\[2025-11-14'` |
+| Calculate date diff | PowerShell | `(New-TimeSpan -Start $date1 -End $date2).Days` |
+| Write timestamp | PowerShell | `Get-Date -Format 'yyyy-MM-dd HH:mm:ss' | Out-File ...` |
+| List files sorted | PowerShell | `Get-ChildItem ... | Sort-Object LastWriteTime -Descending` |
+
+**Golden Rule**: Minimize Bash tool usage. Maximize Read/Glob tool usage. Use PowerShell only for operations that require shell logic (date math, filtering, sorting).
+
+---
+
+## ERROR HANDLING AND FALLBACK PROTOCOLS
+
+**Purpose**: Ensure all business operations workflows degrade gracefully when errors occur, preventing system failures from blocking critical operations.
+
+### Core Principles
+
+1. **Never Block on File Read Errors**: If a file doesn't exist or can't be read, use fallback data and warn the user
+2. **Validate Before Executing Shell Commands**: Check preconditions before running PowerShell commands
+3. **Log All Errors**: Record failures to operations_log.txt for debugging and pattern analysis
+4. **Provide Clear User Guidance**: Explain what failed, why, and what action to take
+
+---
+
+### Error Handling by Workflow
+
+**1. Daily Roadmap Generation**
+
+**Error Scenario 1**: .last_sync file missing or unreadable
+- **Detection**: Read tool returns "File does not exist" or corrupted content
+- **Fallback Behavior**: Treat as 999 days stale (forces CRITICAL warning on next check)
+- **User Warning**: "⚠️ Staleness unknown (.last_sync missing/invalid) - recommend sync"
+- **Continue or Block**: CONTINUE with roadmap generation (staleness check is advisory, not blocking)
+- **Log Entry**: `[DATE] - ERROR - daily-roadmap - .last_sync read failed: [reason]. Treating as 999 days stale.`
+
+**Error Scenario 2**: PowerShell date calculation fails
+- **Detection**: PowerShell command exits with non-zero code or returns invalid output
+- **Fallback Behavior**: Use Read tool + manual date parsing (check timestamp format, compare to current date)
+- **User Warning**: "⚠️ PowerShell date calculation failed - using fallback method"
+- **Continue or Block**: CONTINUE with alternative method
+- **Log Entry**: `[DATE] - ERROR - daily-roadmap - PowerShell date calc failed. Used fallback method.`
+
+**Error Scenario 3**: operations_log.txt parsing fails
+- **Detection**: PowerShell Select-String returns error or empty results unexpectedly
+- **Fallback Behavior**: Use simplified pattern without regex (e.g., `findstr "YYYY-MM-DD"`)
+- **User Warning**: "⚠️ Operations log parsing failed - using simplified search"
+- **Continue or Block**: CONTINUE with fallback
+- **Log Entry**: `[DATE] - ERROR - daily-roadmap - operations_log.txt parsing failed. Used fallback.`
+
+**Error Scenario 4**: Active Projects Index files not found
+- **Detection**: Glob tool returns empty array or Read tool fails on all index files
+- **Fallback Behavior**: Generate roadmap with Tier 2 (Strategic) and Tier 3 (Daily Disciplines) only
+- **User Warning**: "⚠️ No Active Projects Index files found - Tier 1 (Momentum) will be empty. Run 'sync all project indices' first."
+- **Continue or Block**: CONTINUE (roadmap still useful with strategic work + disciplines)
+- **Log Entry**: `[DATE] - ERROR - daily-roadmap - No index files found. Generated roadmap without Tier 1.`
+
+**Error Scenario 5**: Productivity Assessment file missing
+- **Detection**: Read tool returns "File does not exist" for yesterday's assessment
+- **Fallback Behavior**: Skip "Tomorrow's Priorities" section, rely on operations_log.txt + index files only
+- **User Warning**: None (expected scenario - assessments aren't always done)
+- **Continue or Block**: CONTINUE normally
+- **Log Entry**: None (not an error - assessment is optional)
+
+**Error Scenario 6**: Strategic Planning file missing or stale (>14 days)
+- **Detection**: No files found in Strategic Planning folder OR most recent file >14 days old
+- **Fallback Behavior**: Use Strategy file (AI Growth Engine KB) for strategic priorities instead
+- **User Warning**: "⚠️ Strategic Planning file missing or >14 days stale. Using Strategy file fallback. Consider updating strategic planning this week."
+- **Continue or Block**: CONTINUE with fallback
+- **Log Entry**: `[DATE] - WARNING - daily-roadmap - Strategic Planning stale. Used Strategy file fallback.`
+
+**Error Scenario 7**: Strategy file missing or corrupt
+- **Detection**: File doesn't exist OR file size <100 bytes OR strategic priorities section missing
+- **Fallback Behavior**: Use hardcoded fallback strategy:
+  ```
+  Strategic Goal: "Grow business revenue (default - Strategy file unavailable)"
+  Priorities: ["High-impact tasks", "Momentum tasks", "Daily disciplines"]
+  Bottleneck: "Unknown (Strategy file unavailable - update AI Growth Engine KB)"
+  Daily Disciplines: ["Outreach (30 min)", "Content creation (30 min)", "Admin (15-30 min)"]
+  ```
+- **User Warning**: "🚨 CRITICAL: Strategy file missing/corrupt. Using fallback priorities. Update AI Growth Engine KB immediately to restore full strategic context."
+- **Continue or Block**: CONTINUE (functional roadmap with generic priorities)
+- **Log Entry**: `[DATE] - ERROR - daily-roadmap - Strategy file missing/corrupt. Used hardcoded fallback.`
+
+---
+
+**2. Productivity Assessment**
+
+**Error Scenario 1**: .last_sync file missing (for conditional sync offer)
+- **Detection**: Read tool returns "File does not exist"
+- **Fallback Behavior**: Treat as 999 days stale (always offer sync)
+- **User Warning**: Include in sync offer: "I couldn't determine last sync date (.last_sync missing) - recommend sync to establish baseline"
+- **Continue or Block**: CONTINUE (offer sync regardless)
+- **Log Entry**: `[DATE] - ERROR - productivity-assessment - .last_sync missing. Offering sync unconditionally.`
+
+**Error Scenario 2**: operations_log.txt has no entries for today
+- **Detection**: PowerShell Select-String returns empty results
+- **Fallback Behavior**: Assessment proceeds with "No work logged today" in Work Completed section
+- **User Warning**: None (valid scenario - user may not have worked yet)
+- **Continue or Block**: CONTINUE normally
+- **Log Entry**: None (not an error)
+
+**Error Scenario 3**: File modification search fails
+- **Detection**: PowerShell Get-ChildItem command exits with error
+- **Fallback Behavior**: Skip file modification analysis, rely on operations_log.txt only
+- **User Warning**: "⚠️ File modification detection failed - assessment based on operations_log.txt only"
+- **Continue or Block**: CONTINUE (partial data still useful)
+- **Log Entry**: `[DATE] - ERROR - productivity-assessment - File modification search failed. Used operations_log.txt only.`
+
+---
+
+**3. Weekly Strategic Planning**
+
+**Error Scenario 1**: .last_sync >7 days stale (blocking validation)
+- **Detection**: Read .last_sync, calculate days since sync, >7 days
+- **Fallback Behavior**: NONE - this is intentionally blocking
+- **User Warning**: "⚠️ SYNC REQUIRED BEFORE STRATEGIC PLANNING - Indices last synced [X] days ago. Options: (A) Sync first (recommended), (B) Skip sync (not recommended)"
+- **Continue or Block**: BLOCK until user chooses option
+- **Log Entry**: `[DATE] - WARNING - strategic-planning - Blocked due to stale indices ([X] days). User prompted for sync decision.`
+
+**Error Scenario 2**: User chooses "Skip sync" option
+- **Detection**: User explicitly selects "B) Skip sync, use stale data"
+- **Fallback Behavior**: Proceed with stale data, add DATA QUALITY WARNING to strategic planning output frontmatter
+- **User Warning**: Strategic planning file includes: "⚠️ DATA QUALITY WARNING: Analysis based on indices last synced [X] days ago. Accuracy may be compromised."
+- **Continue or Block**: CONTINUE with warning documented
+- **Log Entry**: `[DATE] - WARNING - strategic-planning - User bypassed sync requirement. Proceeded with [X]-day stale data.`
+
+**Error Scenario 3**: Last 7 days' productivity assessments missing
+- **Detection**: Multiple Read attempts return "File does not exist" for recent assessment files
+- **Fallback Behavior**: Generate strategic planning based on operations_log.txt + daily roadmaps only
+- **User Warning**: "⚠️ Productivity assessments missing for last 7 days - using operations_log.txt + roadmaps for pattern analysis"
+- **Continue or Block**: CONTINUE (partial data still enables strategic review)
+- **Log Entry**: `[DATE] - WARNING - strategic-planning - Missing productivity assessments. Used operations_log.txt fallback.`
+
+---
+
+**4. Sync All Project Indices**
+
+**Error Scenario 1**: Project folder has no README.md or CLAUDE.md
+- **Detection**: Read tool returns "File does not exist" for both files
+- **Fallback Behavior**: Create minimal index entry with "Status: Unknown - No documentation found"
+- **User Warning**: Include in sync summary: "[Project-name]: No docs found - index created with 'Unknown' status"
+- **Continue or Block**: CONTINUE (create index anyway for completeness)
+- **Log Entry**: `[DATE] - WARNING - sync-indices - [project-name] has no README/CLAUDE.md. Created minimal index.`
+
+**Error Scenario 2**: .last_sync write fails
+- **Detection**: Write tool returns error (disk full, permissions issue, etc.)
+- **Fallback Behavior**: Sync proceeds, but staleness tracking won't update
+- **User Warning**: "🚨 CRITICAL: Failed to update .last_sync file - future staleness checks will be inaccurate. Fix file permissions or disk space."
+- **Continue or Block**: CONTINUE (sync completed, but tracking broken)
+- **Log Entry**: `[DATE] - ERROR - sync-indices - Failed to write .last_sync: [reason]. Staleness tracking not updated.`
+
+**Error Scenario 3**: PowerShell timestamp write fails
+- **Detection**: PowerShell command exits with error
+- **Fallback Behavior**: Retry with Write tool: `Get-Date -Format 'yyyy-MM-dd HH:mm:ss'` manually, then Write tool
+- **User Warning**: "⚠️ PowerShell timestamp write failed - using fallback method"
+- **Continue or Block**: CONTINUE with fallback
+- **Log Entry**: `[DATE] - WARNING - sync-indices - PowerShell timestamp failed. Used Write tool fallback.`
+
+---
+
+### General Error Handling Best Practices
+
+**1. Tool Selection Hierarchy (Prefer Most Reliable)**:
+- **Read tool**: Always succeeds with clear "File does not exist" message (most reliable)
+- **Glob tool**: Pattern matching without shell errors (very reliable)
+- **PowerShell commands**: Can fail due to syntax, permissions, environment (use as last resort)
+
+**2. Pre-Execution Validation**:
+- Before PowerShell command: Check file exists (Read tool), validate path format
+- Before date calculations: Verify .last_sync content format matches `YYYY-MM-DD HH:MM:SS`
+- Before regex operations: Test pattern on sample data first
+
+**3. Error Logging Protocol**:
+- **Format**: `[YYYY-MM-DD HH:MM:SS] - ERROR/WARNING - [workflow-name] - [description]. [fallback-action-taken]`
+- **Severity Levels**:
+  - **ERROR**: Function failed, fallback used, may impact quality
+  - **WARNING**: Sub-optimal path taken, quality unaffected
+  - **CRITICAL**: System integrity at risk, immediate user action required
+
+**4. User Communication**:
+- **Blocking Errors**: Explain why blocking, offer clear options (e.g., "Sync first" vs "Skip sync")
+- **Non-Blocking Errors**: Warn but proceed, explain impact (e.g., "Tier 1 will be empty")
+- **Critical Errors**: Use 🚨 emoji, explain urgency, provide fix instructions
+
+**5. Retry Strategy**:
+- **PowerShell failures**: Retry with fallback method (Read tool, Glob tool, manual parsing)
+- **File read failures**: Try alternative files (e.g., if latest strategic plan missing, try previous week)
+- **Date parsing failures**: Retry with different date format, then use current date as fallback
+
+---
+
 ## CORE CAPABILITIES
 
 ### 1. Project Memory Management
