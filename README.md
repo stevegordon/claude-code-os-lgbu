@@ -292,9 +292,31 @@ git pull origin main
 
 **When Daron releases new system improvements**, you can update your local system WITHOUT losing your business customizations.
 
-### Quick Update (5 Minutes)
+### Automated Update (Recommended - Easiest)
 
-See [UPDATE_QUICK_REFERENCE.md](UPDATE_QUICK_REFERENCE.md) for step-by-step commands.
+**Just run this command** in your Business OS folder:
+
+```bash
+node scripts/update-from-upstream.js
+```
+
+The script will:
+- ✅ Guide you through the entire update process
+- ✅ Create automatic backups
+- ✅ Update framework files (system improvements)
+- ✅ Preserve your business files (your work stays safe)
+- ✅ Help you merge CLAUDE.md (opens side-by-side diff)
+- ✅ Test the update works
+
+**Time**: 5-10 minutes with interactive prompts
+
+**This is the safest and easiest way to update.**
+
+---
+
+### Manual Update (Advanced Users)
+
+If you prefer running Git commands yourself, see [UPDATE_QUICK_REFERENCE.md](UPDATE_QUICK_REFERENCE.md) for step-by-step commands.
 
 **TL;DR**:
 1. Backup your work

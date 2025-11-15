@@ -4,37 +4,84 @@
 
 ---
 
-## TL;DR - 5-Minute Update
+## EASIEST: Automated Update Script (Recommended)
+
+**Just run this command** and answer a few prompts:
 
 ```bash
-# 1. Backup
+node scripts/update-from-upstream.js
+```
+
+**What it does automatically**:
+- ✅ Creates backup branch
+- ✅ Fetches upstream changes
+- ✅ Shows what changed
+- ✅ Updates framework files (scripts, docs)
+- ✅ Preserves your business files
+- ✅ Guides CLAUDE.md merge (opens VS Code diff)
+- ✅ Commits changes
+- ✅ Tests the update
+
+**Time**: 5-10 minutes with guided prompts
+
+**Use this method** if you want the safest, easiest update experience.
+
+---
+
+## Manual Update (For Advanced Users)
+
+If you prefer running Git commands yourself:
+
+### TL;DR - 5-Minute Update
+
+**Prerequisites**: Make sure you're in your Business OS folder
+```bash
+cd claude-code-os-lgbu  # or wherever you cloned it
+```
+
+**Update Commands**:
+```bash
+# 1. Backup (safety net - create backup branch)
 git checkout -b backup-pre-update-$(date +%Y%m%d)
+git checkout main  # Return to main branch
 
-# 2. Fetch upstream
+# 2. Fetch Daron's latest changes (doesn't modify your files yet)
 git fetch origin
+
+# 3. See what Daron changed (review before applying)
 git log HEAD..origin/main --oneline
+git diff HEAD..origin/main --name-only
 
-# 3. Take framework files (safe)
+# 4. Update framework files ONLY (scripts, system docs - safe to overwrite)
 git checkout origin/main -- scripts/
-git checkout origin/main -- "System Documentation/"
+git checkout origin/main -- "System Documentation/SETTINGS_JSON_IMPLEMENTATION_GUIDE.md"
+git checkout origin/main -- "System Documentation/CCGG_MECHANISMS_REGISTRY.md"
+git checkout origin/main -- "System Documentation/BRUTAL_PRIORITIZATION_FRAMEWORK.md"
+# ... add any other system docs Daron mentions in release notes
 
-# 4. Keep your business files (never overwrite)
+# 5. Keep YOUR business files (never overwrite these)
 git checkout HEAD -- "AI Growth Engine/"
 git checkout HEAD -- "Active Projects/"
 git checkout HEAD -- "Project Memory/"
 git checkout HEAD -- operations_log.txt
 
-# 5. Merge CLAUDE.md (manual - see below)
+# 6. Merge CLAUDE.md manually (see "CLAUDE.md Manual Merge" section below)
+# This is the ONLY file requiring manual attention
 
-# 6. Test
-# - Generate daily roadmap
-# - Check your business context loads
+# 7. Test
+# - Ask Claude: "Generate daily roadmap"
+# - Verify your business context loads correctly
 
-# 7. Commit
+# 8. Commit merged update
 git add .
-git commit -m "MERGE: Upstream update from Daron"
+git commit -m "MERGE: Upstream update from Daron - [feature name from release notes]"
+
+# 9. Push to YOUR GitHub repo (if you have one)
+# NOTE: If you DON'T have your own GitHub repo, skip this step
 git push origin main
 ```
+
+**Time**: 5-10 minutes (most time spent on Step 6 - CLAUDE.md merge)
 
 ---
 
