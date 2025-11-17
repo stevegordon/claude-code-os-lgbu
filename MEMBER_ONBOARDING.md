@@ -14,7 +14,7 @@ This guide will walk you through your first deployment of Claude Code OS. Follow
 
 **Purpose**: Understand member motivation, planned usage, and success criteria to align program delivery with expectations.
 
-**Survey Link**: [INSERT GOOGLE FORM LINK AFTER CREATION]
+**Survey Link**: https://docs.google.com/forms/d/e/1FAIpQLScFhu2T0XgcbPoN2v5GUIGKIVJ_WvA5-hgV6vWg7pNiCLA3WQ/viewform
 
 **When to Share**:
 - **During Call**: Share link in chat at beginning of call (members fill while listening to opening remarks)
@@ -26,16 +26,11 @@ This guide will walk you through your first deployment of Claude Code OS. Follow
 3. How do you plan to use this in your business?
 4. What would success look like for you?
 
-**Email Notifications**: All responses sent to daron@ccggskool.com automatically
-
 **Usage**: Review responses to:
 - Personalize upcoming modules (CRM, Finance, Meta Ads teams)
 - Address common pain points during group calls
 - Identify high-value features to prioritize
 - Validate program-market fit
-
-**Script to Create Form** (5 min via Google Apps Script):
-See `EXPECTATIONS_SURVEY_SCRIPT.md` in root folder for automated form creation script.
 
 ---
 
