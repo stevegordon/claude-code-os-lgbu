@@ -6,6 +6,8 @@ This guide will walk you through your first deployment of Claude Code OS. Follow
 
 **Estimated Time**: 30-60 minutes (depending on customization depth)
 
+**NO COMMAND LINE REQUIRED** - We use VS Code + Claude Code extension with natural language commands
+
 ---
 
 ## Prerequisites Check
@@ -13,13 +15,16 @@ This guide will walk you through your first deployment of Claude Code OS. Follow
 Before starting, verify you have:
 
 - [ ] Windows 10 or Windows 11
-- [ ] Claude Code installed ([download here](https://claude.com/claude-code))
-- [ ] Git installed ([download here](https://git-scm.com/downloads))
-- [ ] GitHub account created
-- [ ] Repository access granted (you received GitHub invitation email)
-- [ ] Terminal/command line access (Command Prompt, PowerShell, or Git Bash)
+- [ ] **Visual Studio Code** installed ([download here](https://code.visualstudio.com/))
+- [ ] **Claude Code extension** installed in VS Code (search "Claude Code" in Extensions)
+- [ ] **Claude Pro subscription** active ([sign up here](https://claude.ai/) - $20/month, required)
+- [ ] GitHub account created ([sign up here](https://github.com/signup))
+- [ ] Repository access granted (you received GitHub invitation email from program admin)
 
-**If missing any prerequisites**: See README.md "System Requirements" section first.
+**Optional but recommended**:
+- [ ] Git installed ([download here](https://git-scm.com/downloads)) - Improves reliability, but Claude Code has built-in Git support
+
+**If missing any prerequisites**: Contact program admin or see README.md "System Requirements" section.
 
 ---
 
@@ -28,7 +33,7 @@ Before starting, verify you have:
 ### 1.1: Check Email
 
 Look for email from GitHub with subject similar to:
-> "You've been invited to join CCGG-Business-Operations/claude-code-os-lgbu"
+> "You've been invited to join [AdminUsername]/claude-code-os-lgbu"
 
 ### 1.2: Accept Invitation
 
@@ -39,403 +44,685 @@ Look for email from GitHub with subject similar to:
 
 ### 1.3: Verify Access
 
-Visit: `https://github.com/CCGG-Business-Operations/claude-code-os-lgbu`
+Visit the repository URL provided by your program admin.
 
 You should see the repository files (not a 404 error).
 
 ---
 
-## Step 2: Clone Repository to Your Computer
+## Step 2: Open VS Code + Claude Code Extension
 
-### 2.1: Choose Location
+### 2.1: Launch Visual Studio Code
 
-Decide where to store your business operations:
+- Open VS Code from Start menu or desktop shortcut
+- You should see the VS Code welcome screen
 
-**Recommended**: `C:\Users\YourName\claude-code-os-lgbu`
+### 2.2: Verify Claude Code Extension
 
-**Why this location**:
-- Easy to find and access
-- No spaces in path (avoids Windows issues)
-- Not in OneDrive/Dropbox (can cause sync conflicts)
-- Direct path for command line operations
+- Click **Extensions** icon in left sidebar (or press `Ctrl+Shift+X`)
+- Search: "Claude Code"
+- Should show **"Installed"** (if not, click Install now)
 
-### 2.2: Open Terminal
+### 2.3: Sign In to Claude
 
-**Option A: Command Prompt**
-- Press `Win + R`
-- Type `cmd` → Enter
+- Click **Claude icon** in left sidebar (looks like Claude logo)
+- If not signed in: Click "Sign in" button
+- Authenticate with your Claude Pro account
+- Authorize Claude Code extension
 
-**Option B: PowerShell**
-- Right-click Start menu
-- Select "Windows PowerShell"
-
-**Option C: Git Bash** (if installed)
-- Right-click in folder where you want to clone
-- Select "Git Bash Here"
-
-### 2.3: Navigate to Parent Folder
-
-```bash
-# Go to your user folder
-cd C:\Users\YourName
-
-# Or navigate to your preferred location
-cd C:\path\to\your\preferred\location
-```
-
-### 2.4: Clone Repository
-
-```bash
-git clone https://github.com/CCGG-Business-Operations/claude-code-os-lgbu.git
-```
-
-**If asked for authentication**:
-
-**HTTPS (recommended for simplicity)**:
-- Username: Your GitHub username
-- Password: Personal Access Token ([create one here](https://github.com/settings/tokens))
-  - Note: GitHub no longer accepts account passwords for Git operations
-
-**SSH (if you've set up SSH keys)**:
-- Use: `git clone git@github.com:CCGG-Business-Operations/claude-code-os-lgbu.git`
-- Requires SSH keys configured ([GitHub guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh))
-
-### 2.5: Verify Clone Success
-
-```bash
-# Navigate into the cloned folder
-cd claude-code-os-lgbu
-
-# List files (you should see CLAUDE.md, README.md, etc.)
-dir  # (Windows Command Prompt)
-# OR
-ls   # (Git Bash, PowerShell)
-```
-
-**Success**: You see a list of files and folders.
+**Success**: Claude chat interface appears on right side of VS Code
 
 ---
 
-## Step 3: Open in Claude Code
+## Step 3: Clone Repository via Claude Code (NO COMMAND LINE!)
 
-### 3.1: Launch Claude Code
+### 3.1: Ask Claude to Clone Repository
 
-From terminal (inside `claude-code-os-lgbu` folder):
+In the Claude Code chat interface, type:
 
-```bash
-code .
+```
+Clone the repository [REPOSITORY_URL_PROVIDED_BY_ADMIN] to C:\Users\[YourWindowsUsername]\claude-code-os-lgbu
 ```
 
-**OR**
+**Replace**:
+- `[REPOSITORY_URL_PROVIDED_BY_ADMIN]` with the URL your admin gave you
+- `[YourWindowsUsername]` with your actual Windows username (e.g., `JohnSmith`)
 
-- Open Claude Code application
-- File → Open Folder
-- Navigate to `claude-code-os-lgbu` folder
-- Click "Select Folder"
+**Example**:
+```
+Clone the repository https://github.com/adminuser/claude-code-os-lgbu.git to C:\Users\JohnSmith\claude-code-os-lgbu
+```
 
-### 3.2: Verify Claude Code Loaded Correctly
+### 3.2: Authenticate with GitHub
 
-You should see:
-- File explorer on left (showing all folders/files)
-- CLAUDE.md visible in file list
-- Claude chat interface (ready to accept prompts)
+**If Git asks for credentials** (popup or in terminal):
 
-### 3.3: Read CLAUDE.md
+```
+Username: [your-github-username]
+Password: [your-personal-access-token]
+```
 
-**CRITICAL**: Claude Code reads CLAUDE.md to understand how to work in this project.
+**⚠️ IMPORTANT**: Use **Personal Access Token**, NOT your GitHub password
+
+**GitHub deprecated password authentication** for security reasons. You must create a token.
+
+### 3.3: Create Personal Access Token (If You Don't Have One)
+
+**This token is for Git authentication (NOT Claude authentication) - Two separate systems**
+
+1. Go to: https://github.com/settings/tokens
+2. Click **"Generate new token (classic)"**
+3. **Token name**: "Git Access for Claude Code OS"
+4. **Expiration**: Select "90 days" (or "No expiration" if you prefer)
+5. **Scopes**: Check **"repo"** ONLY (uncheck everything else)
+6. Click **"Generate token"** at bottom
+7. **COPY THE TOKEN** - You can't see it again after leaving the page!
+8. **Paste as password** when Git asks for credentials
+
+**What this token allows**:
+- ✅ Clone repositories (download code)
+- ✅ Pull updates (get new features)
+- ❌ Push changes (you have Read-only access anyway)
+
+**Keep token safe**: Save in password manager, don't share publicly
+
+### 3.4: Verify Clone Success
+
+Claude Code should respond:
+> "Repository cloned successfully. Would you like to open it in VS Code?"
+
+**Click YES** or respond "yes" in chat.
+
+**If you closed VS Code** or need to reopen later:
+1. File → Open Folder
+2. Navigate to `C:\Users\[YourName]\claude-code-os-lgbu`
+3. Click "Select Folder"
+
+**Success indicators**:
+- File explorer (left sidebar) shows folders: `Project Memory/`, `Active Projects/`, `AI Growth Engine/`, etc.
+- `CLAUDE.md`, `README.md` visible in file list
+- Claude Code chat still accessible
+
+---
+
+## Step 4: Verify Claude Understands the System
+
+### 4.1: Test System Load
+
+In Claude Code chat, ask:
+
+```
+Read CLAUDE.md and confirm you understand this is a business operations project
+```
+
+### 4.2: Expected Response
+
+Claude should respond with:
+- Overview of the system (Daily Roadmap, Productivity Assessment, Strategic Planning workflows)
+- Confirmation it read the CLAUDE.md instructions
+- Readiness to help with business operations
+- Mention of specific workflows (not generic AI assistant responses)
+
+### 4.3: Troubleshooting
+
+**If Claude gives generic response** (doesn't mention specific workflows):
+
+**Solution**:
+1. File → Close Folder
+2. File → Open Folder
+3. Select `C:\Users\[YourName]\claude-code-os-lgbu` again
+4. Retry prompt: "Read CLAUDE.md and confirm you understand this is a business operations project"
+
+**Success**: Claude references Daily Roadmap, Productivity Assessment, Strategic Planning systems
+
+---
+
+## Step 5: Understand Git + GitHub Workflow
+
+### 5.1: How Your Work Stays Private
+
+**IMPORTANT CLARIFICATION**:
+
+Your work stays **LOCAL** on your computer. Here's how the system works:
+
+**1. You cloned the repository**
+- Copied the framework to your computer ✅
+- All files are now on your machine ✅
+
+**2. Your work is YOUR work**
+- Roadmaps, assessments, projects you create = Yours ✅
+- Stored locally, not uploaded to GitHub ✅
+
+**3. Personal Access Token = GitHub authentication**
+- Allows Git to authenticate with GitHub ✅
+- Required for cloning private repositories ✅
+- Has NOTHING to do with Claude Code extension authentication ✅
+- Standard GitHub security requirement ✅
+
+**4. You have Read-only access**
+- You CAN pull updates from admin (get new features) ✅
+- You CANNOT push to admin's GitHub (your work stays private) ✅
+- This is correct and intentional ✅
+
+**5. Local Git commits = Your backup**
+- Ask Claude: "Commit my changes with message: [description]" ✅
+- Commits stay on your computer (like Time Machine) ✅
+- Your version control, your business data ✅
+
+### 5.2: Two Separate Authentication Systems
+
+| System | Authentication | Purpose |
+|--------|---------------|---------|
+| **Claude Code Extension** | Claude Pro account | Use Claude AI in VS Code |
+| **Git + GitHub** | Personal Access Token | Clone/pull from GitHub repos |
+
+**You need BOTH**, but they are NOT connected:
+1. Claude Pro subscription → Sign in to Claude Code extension → Use AI features
+2. GitHub account + Access Token → Clone admin's repository → Get updates
+
+---
+
+## Step 6: Customize for Your Business
+
+### 6.1: Navigate to AI Growth Engine
+
+In VS Code file explorer (left sidebar):
+- Expand `AI Growth Engine/` folder
+- Open `Knowledge Base/` subfolder
+
+**This is THE MOST IMPORTANT step** - The system reads these files to prioritize your work.
+
+### 6.2: Create Strategy.md (10-15 min)
+
+Ask Claude Code in chat:
+
+```
+Help me create AI Growth Engine/Knowledge Base/Strategy.md with these sections:
+- One Obsessional Big Goal (OOBG)
+- Unique Vehicle
+- Current Strategic Priorities
+- Current Bottleneck
+- 2-Year Vision
+
+Let's start: What is my OOBG?
+```
+
+**Claude will prompt you for each section.** Answer with YOUR business details:
+
+**Example answers**:
+- **OOBG**: "Build the #1 AI automation community for coaches and consultants"
+- **Unique Vehicle**: "YouTube + Paid Community (no courses, just systems)"
+- **Current Priorities**:
+  1. Increase YouTube views (traffic bottleneck)
+  2. Optimize trial→paid conversion (revenue growth)
+  3. Launch advanced AI agent course (product expansion)
+- **Current Bottleneck**: "Member onboarding - too manual, needs automation"
+- **2-Year Vision**: "10,000 members, $1.2M ARR, team of 5, fully automated operations"
+
+**Claude saves the file** when complete.
+
+### 6.3: Create Target_Avatars.md (5-10 min)
 
 Ask Claude:
 
 ```
-"Read CLAUDE.md and confirm you understand this is a business operations project"
+Help me create AI Growth Engine/Knowledge Base/Target_Avatars.md. I'll describe my ideal customer avatars.
 ```
 
-Claude should respond with confirmation and overview of capabilities.
+**For EACH avatar** (describe 1-2 avatars):
+- **Avatar Name**: (e.g., "Reluctant Coach", "Scaling Consultant")
+- **Industry**: coaching, consulting, SaaS, etc.
+- **Business Stage**: solopreneur, small team, scaling
+- **Annual Revenue**: $50K-$100K, $100K-$250K, $250K-$1M, etc.
+- **Pain Points** (3 main frustrations they have)
+- **Goals** (what they want to achieve)
+- **How We Help** (your specific value to this avatar)
 
----
+**Claude formats and saves** the file.
 
-## Step 4: Customize for Your Business
+### 6.4: Create Product_Information.md (5 min - Optional)
 
-### 4.1: Review CLAUDE.md Placeholders
+Ask Claude:
 
-Open `CLAUDE.md` and search for:
-- `[Your Business]`
-- `[Your Name]`
-- Any other placeholder text
+```
+Help me create AI Growth Engine/Knowledge Base/Product_Information.md with my offers and customer journey.
+```
 
-**You can edit this file directly** (it's yours to customize).
+**Provide**:
+- **Core Offer**: Name, price, delivery method, promise
+- **Customer Journey**: How they discover you → How they buy → Upsells/Next steps
 
-**What to customize**:
+**If time limited**: Skip this, add it later (not critical for Day 1 roadmap generation)
+
+### 6.5: Optional - Customize CLAUDE.md (5 min - Advanced)
+
+**If time allows** (not required for Day 1):
+
+Ask Claude:
+
+```
+Open CLAUDE.md and help me customize it for my business
+```
+
+**Customizations**:
 - Replace `[Your Business]` with your actual business name
-- Adjust strategic goal descriptions if needed
-- Add business-specific workflows if relevant
+- Adjust Daily Disciplines (Tier 3) to YOUR routines
+- Add business-specific workflows if needed
 
-**What to keep**:
-- All core mechanisms (they work universally)
-- Windows coding standards section
-- Workflow sections (Daily Roadmap, Productivity Assessment, etc.)
+**Keep all core mechanisms** (they work universally)
 
-### 4.2: Populate AI Growth Engine Knowledge Base
-
-**This is THE MOST IMPORTANT step for strategic alignment.**
-
-Navigate to: `AI Growth Engine/Knowledge Base/`
-
-**Minimum Required Files** (use templates from `_Template_Examples/`):
-
-**1. Strategy.md** (Your strategic foundation)
-
-Create this file with:
-
-```markdown
-# Business Strategy
-
-## One Obsessional Big Goal (OOBG)
-
-[What is the ONE thing your business exists to achieve?]
-
-Example: "Build the #1 AI automation community for coaches and consultants"
-
-## Unique Vehicle
-
-[How do you uniquely deliver value?]
-
-Example: "YouTube + Paid Community (no courses, just systems)"
-
-## Current Strategic Priorities
-
-1. [Priority 1]
-2. [Priority 2]
-3. [Priority 3]
-
-## Current Bottleneck
-
-[What is blocking your OOBG progress right now?]
-
-Example: "Member onboarding - too manual, needs automation"
-
-## 2-Year Vision
-
-[Where do you want to be in 2 years?]
-```
-
-**2. Target_Avatars.md** (Who you serve)
-
-```markdown
-# Target Customer Avatars
-
-## Avatar 1: [Name]
-
-**Demographics:**
-- Industry: [industry]
-- Business stage: [stage]
-- Annual revenue: [$X-Y]
-
-**Pain Points:**
-- [Pain 1]
-- [Pain 2]
-- [Pain 3]
-
-**Goals:**
-- [Goal 1]
-- [Goal 2]
-
-**How We Help:**
-[Specific value we provide to this avatar]
+**You can do this later** - Not critical for first roadmap.
 
 ---
 
-## Avatar 2: [Name]
+## Step 7: Generate Your First Daily Roadmap
 
-[Repeat structure for additional avatars]
-```
-
-**3. Product_Information.md** (What you offer)
-
-```markdown
-# Product & Service Offerings
-
-## Core Offer
-
-**Name**: [Product/Program Name]
-**Price**: [Pricing]
-**Delivery**: [How delivered]
-**Promise**: [Core value proposition]
-
-## Customer Journey
-
-**Entry Point**: [How they discover you]
-**Nurture**: [How you build trust]
-**Conversion**: [How they buy]
-**Ascension**: [Upsells, next steps]
-
-## Module/Lesson Structure
-
-[If you have courses/programs, outline the structure here]
-```
-
-**Optional Files** (add as needed):
-
-- `Attractive_Character.md` - Your voice, persona, communication style
-- `Unique_Selling_Proposition.md` - What makes you different
-- `Offers_and_Funnel.md` - Detailed pricing and funnel structure
-- `Strategic_Framework.md` - Positioning, category design
-
-**Time Investment**: 1-2 hours for minimum files, 3-4 hours for complete knowledge base
-
----
-
-## Step 5: Run Your First Daily Roadmap
-
-### 5.1: Ask Claude to Generate Roadmap
+### 7.1: Ask Claude to Generate Roadmap
 
 In Claude Code chat:
 
 ```
-"Generate daily roadmap"
+Generate daily roadmap
 ```
 
-### 5.2: What Happens
+### 7.2: What Happens (Behind the Scenes)
 
-Claude will:
-1. Read your AI Growth Engine (Strategy.md, avatars, etc.)
-2. Check for yesterday's unfinished work (none yet, this is your first run)
-3. Prioritize tasks based on OOBG alignment
-4. Generate roadmap with 4 tiers (Momentum, Strategic, Disciplines, Exploratory)
+Claude Code will:
+1. Read your AI Growth Engine (Strategy.md, Target_Avatars.md)
+2. Check for yesterday's unfinished work (none on first run)
+3. Prioritize tasks based on your OOBG alignment
+4. Generate roadmap with 4 tiers:
+   - **Tier 1 (Momentum)**: Unfinished work from yesterday
+   - **Tier 2 (Strategic)**: High-OOBG-alignment tasks
+   - **Tier 3 (Daily Disciplines)**: Fixed routines
+   - **Tier 4 (Exploratory)**: Incubating projects
 5. Save to `Project Memory/Daily Planning/YYYY-MM-DD_daily-roadmap.md`
 
-### 5.3: Review Your Roadmap
+**Time**: 2-5 minutes for Claude to generate
 
-Open the generated file: `Project Memory/Daily Planning/[today's date]_daily-roadmap.md`
+### 7.3: Review Your Roadmap
 
-You should see:
-- **Tier 1 (Momentum)**: Unfinished work from yesterday (empty on first run)
-- **Tier 2 (Strategic)**: High-OOBG-alignment tasks
-- **Tier 3 (Daily Disciplines)**: Fixed routines (customize these in CLAUDE.md)
+**Open the generated file**:
+- Navigate to `Project Memory/Daily Planning/` folder
+- Open today's file: `YYYY-MM-DD_daily-roadmap.md`
+
+**You should see**:
+- **Tier 1 (Momentum)**: Empty on first run (no yesterday's work)
+- **Tier 2 (Strategic)**: Tasks based on YOUR OOBG, priorities, bottleneck
+- **Tier 3 (Daily Disciplines)**: Default routines (customize in CLAUDE.md later)
 - **Tier 4 (Exploratory)**: Incubating projects (if any)
 
-**If roadmap is empty or generic**:
-- Go back to Step 4.2 (populate AI Growth Engine)
-- Roadmap quality depends on strategic knowledge base quality
+**Each task shows**:
+- Time estimate (e.g., "2-3 hours")
+- OOBG alignment score (e.g., "92/100" = highly strategic)
+- Context from yesterday (if applicable)
+- Next actions (what to do first)
+
+### 7.4: Troubleshooting Empty Roadmap
+
+**If Tier 2 (Strategic) is empty or generic**:
+
+**Root cause**: AI Growth Engine not detailed enough
+
+**Solution**:
+1. Go back to Step 6.2 (Strategy.md)
+2. Add more specific details:
+   - Expand Current Priorities (3+ concrete items)
+   - Define Current Bottleneck clearly
+   - Add tactical priorities (not just high-level goals)
+3. Ask Claude: "Generate daily roadmap" again
+
+**Success**: Tier 2 populates with specific tasks aligned to your business
 
 ---
 
-## Step 6: Execute and Track Work
+## Step 8: Understand Daily Workflows
 
-### 6.1: Work on Tasks from Roadmap
+### 8.1: Your Daily Rhythm
 
-Choose a task from your roadmap and execute.
-
-**Examples**:
-- "Create content brief for [topic]"
-- "Draft email sequence for [campaign]"
-- "Build strategic plan for [quarter]"
-
-### 6.2: Let Claude Help
-
-**For content creation**:
+**Every Morning** (5 min):
 ```
-"Help me create [deliverable] based on my roadmap priority"
+"Generate daily roadmap"
 ```
+→ Know exactly what to work on, no "where do I start?" friction
 
-**For analysis**:
-```
-"Analyze [data/document] and provide insights"
-```
+**Throughout the Day**:
+- Work on tasks from your roadmap
+- Ask Claude for help:
+  - "Help me create [deliverable]"
+  - "Analyze [data/document]"
+  - "Break down [project] into steps"
+- Claude logs your activity automatically to `operations_log.txt`
 
-**For planning**:
-```
-"Help me break down [project] into actionable steps"
-```
-
-### 6.3: Claude Logs Activity Automatically
-
-When Claude creates/updates files, it logs to `operations_log.txt`:
-
-```
-[2025-11-09 14:23:15] - CREATE - content-brief - Email sequence for product launch
-[2025-11-09 15:10:42] - UPDATE - strategic-planning - Q1 2026 priorities defined
-```
-
-**You don't need to do anything** - this happens automatically.
-
----
-
-## Step 7: Assess Your First Day
-
-### 7.1: End of Day
-
-When you're done working for the day, ask Claude:
-
+**End of Day** (5 min):
 ```
 "Assess my productivity today"
 ```
+→ Productivity score (0-10), OOBG alignment analysis, tomorrow's priorities
+→ Saved to `Project Memory/Productivity Tracking/YYYY-MM-DD_daily-assessment.md`
 
-### 7.2: What Happens
+**Weekly** (Sunday/Monday, 15 min):
+```
+"Update strategic planning"
+```
+→ Reviews last 7 days, challenges deviations, sets next week's priorities
+→ Saved to `Project Memory/Strategic Planning/YYYY-MM-DD_weekly-plan.md`
 
-Claude will:
-1. Read `operations_log.txt` for today's activity
-2. Analyze files modified today
-3. Calculate OOBG alignment (how strategic was your work?)
-4. Score productivity (0-10 scale with detailed justification)
-5. Identify patterns (what made today productive?)
-6. Recommend tomorrow's priorities
-7. Save to `Project Memory/Productivity Tracking/YYYY-MM-DD_daily-assessment.md`
+### 8.2: Preview: Productivity Assessment (Demo Only)
 
-### 7.3: Review Assessment
+**Explain** (don't run yet, just understand what it does):
 
-Open the generated file and read:
-- **Work Completed**: What you delivered
-- **Productivity Score**: X/10 with breakdown (strengths + deductions)
-- **Strategic Alignment**: Average OOBG alignment of today's work
-- **Tomorrow's Priorities**: Ranked by impact (HIGH/MEDIUM/LOW)
-- **Pattern Notes**: Observations for future cross-analysis
+At end of workday, ask Claude: `"Assess my productivity today"`
 
-**Use this to improve**:
-- High-productivity days: What patterns can you replicate?
-- Low-productivity days: What blocked you?
-- OOBG alignment trending down? Course-correct tomorrow.
+**What it does**:
+- Reads `operations_log.txt` (tracks work automatically when Claude creates/updates files)
+- Analyzes files you created/modified today
+- Calculates OOBG alignment (how strategic was your work? 0-100 scale)
+- Scores productivity (0-10 scale with detailed justification)
+- Identifies patterns (what made today productive or unproductive?)
+- Recommends tomorrow's priorities (ranked: HIGH/MEDIUM/LOW)
+- Saves assessment to `Productivity Tracking/YYYY-MM-DD_daily-assessment.md`
+
+**Run this tonight** after your first work session.
+
+### 8.3: Preview: Weekly Strategic Planning (Overview Only)
+
+**Explain** (start this after Week 1):
+
+Every Sunday or Monday morning, ask Claude: `"Update strategic planning"`
+
+**What it does**:
+- Reviews last 7 days (operations log, productivity assessments, daily roadmaps)
+- Analyzes progress on strategic priorities (did you focus on OOBG work?)
+- Challenges deviations ("You said X was priority, but worked on Y - why?")
+- Consolidates weekly goals and outcomes
+- Sets next week's priorities (based on progress + new information)
+- Identifies blockers to address
+- Saves to `Strategic Planning/YYYY-MM-DD_weekly-plan.md`
+
+**Start this habit** after your first week of daily roadmaps + assessments.
 
 ---
 
-## Step 8: Establish Weekly Rhythm
+## Step 9: Backup Your Work (Local Git Commits)
 
-### 8.1: Sunday Evening or Monday Morning
+### 9.1: Commit to Local Git
 
 Ask Claude:
 
 ```
-"Update strategic planning"
+Commit my changes with message: First day setup complete
 ```
 
-### 8.2: What Happens
+**What this does**:
+- Claude runs `git commit` locally (on your computer)
+- Creates snapshot of your current state
+- Acts like Time Machine for your business files
+- Enables reverting to any previous state if needed
 
-Claude will:
-1. Read last 7 days' data (operations log, productivity assessments, daily roadmaps)
-2. Analyze progress on strategic priorities
-3. Challenge deviations ("You said X was priority, but worked on Y - why?")
-4. Consolidate weekly goals and outcomes
-5. Set next week's priorities
-6. Identify blockers to address
-7. Save to `Project Memory/Strategic Planning/YYYY-MM-DD_weekly-plan.md`
+**Do this daily**:
+```
+"Commit my changes with message: [description of what you did today]"
+```
 
-### 8.3: Review and Respond
+**Examples**:
+- "Completed 3 strategic tasks, updated AI Growth Engine"
+- "End of day backup - finished content calendar for Q1"
+- "Weekly strategic planning complete, priorities set"
 
-Claude will ask probing questions:
-- "Last week you prioritized [X], but worked mostly on [Y]. Why the deviation?"
-- "OOBG alignment averaged [XX/100] last week. What would increase it to 90+?"
+### 9.2: Your Commits Stay Local
 
-**Answer honestly** - this is YOUR business reflection, Claude is facilitating.
+**Important**: Your Git commits do NOT push to GitHub automatically.
 
-### 8.4: Weekly Habit
+**Why?**:
+- You have Read-only access (can pull updates, can't push)
+- Your work stays on YOUR computer (privacy)
+- Local Git = Your version control backup
 
-Commit to this every week for 12+ consecutive weeks to see compounding benefits.
+**If you want to push to YOUR OWN GitHub repo** (optional, advanced):
+- Create your own private GitHub repository
+- Add it as a second remote ("backup")
+- Push to your own repo for cloud backup
+- See "Advanced: Personal GitHub Backup" section below
 
 ---
 
-## Step 9: Advanced Features (When Ready)
+## Setup Complete! ✅
 
-### 9.1: Brutal Prioritization
+You now have:
+- ✅ Visual Studio Code + Claude Code extension working
+- ✅ Repository cloned locally
+- ✅ Claude understands the system (read CLAUDE.md)
+- ✅ AI Growth Engine customized for your business
+- ✅ First Daily Roadmap generated
+- ✅ Daily workflow understood (Roadmap → Work → Assess → Repeat)
+- ✅ Local Git backup working
+
+---
+
+## Next Steps
+
+### Immediate (Today/Tomorrow)
+
+1. **Work on tasks from your roadmap**
+   - Choose Tier 2 (Strategic) tasks first (highest OOBG alignment)
+   - Ask Claude for help: "Help me create [deliverable]"
+   - Let Claude do file operations (automatic logging)
+
+2. **Run your first productivity assessment tonight**
+   - After working on roadmap tasks for a few hours
+   - Ask Claude: "Assess my productivity today"
+   - Review the generated assessment file
+   - See productivity score (0-10) and tomorrow's priorities
+
+3. **Commit another backup**
+   - End of day: Ask Claude "Commit my changes with message: [what you did]"
+   - Builds daily Git commit history
+
+### This Week
+
+4. **Establish daily habit** (7 consecutive days)
+   - Generate Daily Roadmap every morning
+   - Run Productivity Assessment every evening
+   - Track patterns (what makes you most productive?)
+   - Notice OOBG alignment trending up or down
+
+5. **Deepen your AI Growth Engine** (when you have 30-60 min)
+   - Add more detail to Strategy.md (expand priorities, bottleneck)
+   - Create Product_Information.md (if skipped on Day 1)
+   - Optional: Add Attractive_Character.md (your voice/persona)
+   - Optional: Add Unique_Selling_Proposition.md (what makes you different)
+
+### End of Week 1
+
+6. **Run your first Weekly Strategic Planning**
+   - Sunday evening or Monday morning
+   - Ask Claude: "Update strategic planning"
+   - Review the week (deviations, patterns, outcomes)
+   - Set next week's priorities
+   - Claude will challenge you ("You said X, but did Y - why?")
+
+---
+
+## Common Questions
+
+### Q: Can I customize the Daily Disciplines (Tier 3)?
+
+**A**: Yes! Edit `CLAUDE.md` and adjust the "Daily Disciplines" section.
+
+Default is: Outreach, Dream 100, LinkedIn, Email Nurture (from Daron's business)
+
+Replace with YOUR routines:
+- Content creation (if that's your bottleneck)
+- Sales calls (if you're focused on revenue)
+- Product development (if building new offers)
+
+### Q: What if I want to add my own scripts or automation?
+
+**A**: Encouraged! This system is yours to customize.
+
+Add scripts to: `scripts/` folder
+Create custom commands: `.claude/commands/`
+Modify workflows: Edit `CLAUDE.md`
+
+Ask Claude for help: "Help me create a script to [automation task]"
+
+### Q: Should I commit my work to Git regularly?
+
+**A**: YES! Daily commits = Your backup strategy.
+
+**End of every workday**:
+```
+"Commit my changes with message: [description]"
+```
+
+**Why?**:
+- Version control (can revert to any previous state)
+- History of your business evolution
+- Disaster recovery (if files corrupted)
+
+**Your commits stay local** (don't push to GitHub - you have Read-only access)
+
+### Q: How do I get updates when new features are released?
+
+**A**: Ask Claude Code in VS Code:
+
+```
+"Pull latest updates from GitHub"
+```
+
+**What happens**:
+1. Claude fetches admin's latest improvements
+2. Merges with your local work
+3. Your customizations stay safe (Git merge intelligence)
+4. You get system upgrades without losing your business data
+
+**Safe merging**:
+- Framework files (scripts, system docs) = Updated from admin
+- Your business files (AI Growth Engine, projects, assessments) = Preserved
+- CLAUDE.md = Manual merge if both you and admin changed it (side-by-side diff)
+
+### Q: Can I use this without internet?
+
+**A**: Partially.
+
+**Claude Code requires internet** (it's an AI service running in the cloud)
+
+**Your files are local**:
+- Can edit files manually in VS Code without internet
+- Can view past roadmaps, assessments, projects
+- Can't ask Claude questions or generate new roadmaps
+
+**Best practice**: Work online when using Claude features, offline when reviewing/editing manually
+
+### Q: What if I want to work on multiple devices?
+
+**A**: Set up your own personal GitHub backup (optional, advanced).
+
+**Quick setup** (5 minutes):
+1. Create private GitHub repo: github.com/new → "my-business-os"
+2. Ask Claude: "Add a second Git remote named 'backup' pointing to https://github.com/[your-username]/my-business-os.git"
+3. Ask Claude: "Push all my commits to the 'backup' remote"
+
+**Now you can**:
+- **Daily backup**: Ask Claude "Commit and push to backup"
+- **Multi-device**: Clone YOUR backup repo on other computers
+- **Full ownership**: Your complete business data in your GitHub account
+
+**Not urgent** - Set this up when you want extra peace of mind or multi-device access.
+
+---
+
+## Troubleshooting
+
+### Issue: Git authentication failed
+
+**Symptoms**:
+```
+fatal: Authentication failed for 'https://github.com/...'
+```
+
+**Root cause**: Using GitHub password instead of Personal Access Token
+
+**Solution**: Create Personal Access Token
+1. Go to: https://github.com/settings/tokens
+2. Generate token (classic)
+3. Name: "Git Access for Claude Code OS"
+4. Expiration: 90 days
+5. Scope: "repo" only
+6. Copy token, paste as password when Git asks
+
+---
+
+### Issue: Daily Roadmap is empty or generic
+
+**Symptoms**: Tier 2 (Strategic) has no specific tasks or generic placeholders
+
+**Root cause**: AI Growth Engine not detailed enough
+
+**Solution**: Add more detail to Strategy.md
+1. Open `AI Growth Engine/Knowledge Base/Strategy.md`
+2. Expand "Current Strategic Priorities" (3+ specific items)
+3. Define "Current Bottleneck" clearly
+4. Add tactical priorities (not just high-level goals)
+5. Ask Claude: "Generate daily roadmap" again
+
+---
+
+### Issue: Claude doesn't mention system workflows
+
+**Symptoms**: Ask "Read CLAUDE.md..." → Claude gives generic response, no mention of Daily Roadmap/Productivity Assessment
+
+**Root cause**: Claude didn't load CLAUDE.md (wrong folder opened)
+
+**Solution**: Close and reopen folder
+1. File → Close Folder
+2. File → Open Folder
+3. Select `C:\Users\[YourName]\claude-code-os-lgbu`
+4. Retry: "Read CLAUDE.md and confirm you understand this is a business operations project"
+
+---
+
+### Issue: operations_log.txt is empty
+
+**Symptoms**: Worked on tasks, but operations_log.txt has no entries, Productivity Assessment says "No work logged"
+
+**Root cause**: Edited files manually (outside Claude Code), so no automatic logging
+
+**Explanation**: Operations logging is automatic ONLY when Claude Code creates/updates files.
+
+**Solution**: Work through Claude Code
+- Ask Claude to create/update files: "Help me create [deliverable]"
+- Let Claude do file operations (automatic logging)
+- Manual edits are fine (you own the system), but won't appear in log
+
+---
+
+### Issue: Python scripts crash with encoding errors
+
+**Symptoms**: Script outputs `UnicodeEncodeError`
+
+**Root cause**: Windows console uses cp1252 encoding (not UTF-8)
+
+**Solution**: Scripts in this system already use ASCII-only output
+- See `CLAUDE.md` → "WINDOWS ENVIRONMENT" section for coding standards
+- If creating new Python scripts: Use ASCII markers (`[OK]`, `[ERROR]`) instead of emojis
+
+---
+
+## Support Resources
+
+- **Community**: [Link provided by admin] - Ask questions, share wins, troubleshoot together
+- **Weekly Group Calls**: [Schedule provided by admin] - Live Q&A, advanced features
+- **DM Admin**: For urgent or private issues
+- **README.md**: Full system documentation in your cloned folder
+- **CLAUDE.md**: Complete system instructions (customize for your business)
+
+---
+
+## Advanced Features (When Ready)
+
+### Brutal Prioritization
 
 **When task list feels overwhelming**:
 
@@ -443,13 +730,18 @@ Commit to this every week for 12+ consecutive weeks to see compounding benefits.
 "Apply brutal prioritization"
 ```
 
-Claude will:
-- Evaluate every task (OOBG alignment, urgency, impact, effort/value)
-- Identify THE ONE THING (highest leverage)
-- Rank P1 (must do), P2 (should do), P3 (nice to have), KILL (eliminate)
-- Give you permission to ignore low-value work
+**What it does**:
+- Evaluates every task (OOBG alignment, urgency, impact, effort/value ratio)
+- Identifies THE ONE THING (highest leverage task)
+- Ranks P1 (must do), P2 (should do), P3 (nice to have), KILL (eliminate)
+- Gives you permission to ignore low-value work
+- Appends brutal priorities to daily roadmap
 
-### 9.2: Dependency Tracking
+**Use when**: Too many tasks, unclear what matters most
+
+---
+
+### Dependency Tracking
 
 **When projects have blockers**:
 
@@ -459,9 +751,17 @@ Claude will:
 "What does [project-name] block?"
 ```
 
-Claude tracks dependencies in YAML metadata, surfaces blocked tasks, identifies critical path.
+**What it does**:
+- Tracks dependencies in project YAML metadata
+- Surfaces blocked tasks (can't start until X completes)
+- Identifies critical path (which task unblocks the most work?)
+- Visualizes dependency chains
 
-### 9.3: Project Memory Search
+**Use when**: Complex projects with multiple phases, unclear sequencing
+
+---
+
+### Project Memory Search
 
 **When you need to reference past work**:
 
@@ -471,76 +771,63 @@ Claude tracks dependencies in YAML metadata, surfaces blocked tasks, identifies 
 "What have I done on [subject]?"
 ```
 
-Claude searches Project Memory, surfaces reusable components, recommends building on past successes.
+**What it does**:
+- Searches Project Memory for relevant past work
+- Surfaces reusable components (frameworks, copy, templates)
+- Recommends building on past successes
+- Prevents reinventing the wheel
+
+**Use when**: Starting new project, need inspiration, want to reference past wins
 
 ---
 
-## Congratulations!
+### Personal GitHub Backup (Advanced)
 
-You've successfully deployed Claude Code OS. You now have:
+**Want cloud backup + multi-device access?**
 
-- ✅ AI-powered Daily Execution Roadmaps
-- ✅ Productivity Assessment system
-- ✅ Weekly Strategic Planning workflow
-- ✅ Complete business knowledge base
-- ✅ Project Memory for knowledge compounding
-- ✅ Git version control for all business operations
+**5-minute setup**:
 
----
+1. **Create your own private GitHub repo**
+   - Go to: github.com/new
+   - Name: "my-business-os" (or whatever you want)
+   - Make it **PRIVATE**
+   - Do NOT initialize with README (you already have files)
+   - Click "Create repository"
 
-## Next Steps
+2. **Add your repo as second remote**
 
-1. **Daily**: Generate roadmap, execute, assess productivity
-2. **Weekly**: Update strategic planning (Sunday/Monday)
-3. **Monthly**: Review productivity trends, identify high-ROI patterns
-4. **Quarterly**: Major strategic review, goal adjustments
-5. **Ongoing**: Populate AI Growth Engine as business evolves
-
----
-
-## Common Questions (Post-Setup)
-
-### Q: Can I customize the daily disciplines (Tier 3)?
-
-**A**: Yes! Edit `CLAUDE.md` and adjust the "Daily Disciplines" section. Default is outreach, Dream 100, LinkedIn, email nurture - replace with YOUR routines.
-
-### Q: What if I want to add my own scripts or automation?
-
-**A**: Encouraged! Add scripts to `scripts/` folder, create custom commands in `.claude/commands/`, modify workflows in `CLAUDE.md`.
-
-### Q: Should I commit my work to Git?
-
-**A**: Yes, regularly! Your local Git commits are your backup:
-
-```bash
-git add .
-git commit -m "End of day - completed [deliverables]"
+Ask Claude:
+```
+"Add a second Git remote named 'backup' pointing to https://github.com/[your-username]/my-business-os.git"
 ```
 
-You can't push to GitHub (Read-only access), but local commits preserve your history.
+3. **Push your work to your repo**
 
-### Q: How do I get updates when new features are released?
+Ask Claude:
+```
+"Push all my commits to the 'backup' remote"
+```
 
-**A**: See README.md "Getting Updates" section. Summary:
+**Now you have**:
+- `origin` remote = Admin's repo (Read-only, for pulling updates)
+- `backup` remote = Your repo (Full access, for backing up your work)
 
-1. Commit your work: `git commit -am "Before update"`
-2. Pull updates: `git pull origin main`
-3. Resolve conflicts (if any)
-4. Test system still works
+**Your workflow becomes**:
 
-### Q: Can I use this without internet?
+| Action | Command to Claude | What It Does |
+|--------|-------------------|--------------|
+| **Get updates from admin** | "Pull updates from origin" | Gets new features |
+| **Backup your work** | "Push to backup remote" | Backs up to your GitHub |
+| **Daily backup** | "Commit changes and push to backup" | Local commit + cloud backup |
+| **Multi-device sync** | "Pull from backup remote" | Get your work on other computer |
 
-**A**: Partially. Claude Code requires internet (it's an AI service), but your files/system are local. No internet = can't ask Claude questions, but can still edit files manually.
+**Benefits**:
+- ✅ Disaster recovery (computer crashes → clone from your backup repo)
+- ✅ Multi-device access (work on laptop → push to backup → work on desktop → pull from backup)
+- ✅ Independence (if admin's repo becomes unavailable, you have full copy)
+- ✅ Version history in the cloud (your GitHub shows your personal work history)
 
----
-
-## Support Resources
-
-- **Community**: [Your program community link]
-- **Group Calls**: Weekly strategy sessions
-- **DM Support**: For urgent issues
-- **README.md**: Troubleshooting section
-- **CLAUDE.md**: Full system documentation
+**Not urgent** - Set this up when you want extra peace of mind.
 
 ---
 
@@ -550,13 +837,13 @@ Before considering onboarding complete, verify:
 
 - [ ] Repository cloned and accessible
 - [ ] Claude Code opened in project folder
-- [ ] CLAUDE.md read and understood by Claude
-- [ ] AI Growth Engine populated (minimum: Strategy.md, Target_Avatars.md, Product_Information.md)
+- [ ] CLAUDE.md read and understood by Claude (mentions specific workflows)
+- [ ] AI Growth Engine populated (Strategy.md, Target_Avatars.md minimum)
 - [ ] First Daily Roadmap generated successfully
-- [ ] First Productivity Assessment completed
-- [ ] `operations_log.txt` has entries (work tracked)
-- [ ] Git commits created (backup strategy working)
-- [ ] You know where to get support
+- [ ] Daily workflow understood (Roadmap → Work → Assess → Repeat)
+- [ ] First productivity assessment ready to run tonight
+- [ ] Local Git commits working (backup strategy)
+- [ ] Know where to get support (community, group calls, admin)
 
 **If all checked**: You're ready to operate at full capacity.
 
