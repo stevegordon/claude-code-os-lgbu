@@ -43,11 +43,9 @@ Claude Code OS (LGBU) is a **business operating system** that runs inside Claude
 
 ```bash
 # Open terminal in your preferred location (e.g., C:\Users\YourName\)
-git clone https://github.com/[YourGitHubUsername]/claude-code-os-lgbu.git
+git clone https://github.com/DaronVee/claude-code-os-lgbu.git
 cd claude-code-os-lgbu
 ```
-
-**Note**: Replace `[YourGitHubUsername]` with the actual GitHub username provided by your program administrator.
 
 ### Step 2: Open in Claude Code
 
