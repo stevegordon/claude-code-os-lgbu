@@ -1,8 +1,8 @@
 # PROPRIETARY LICENSE
 
-Copyright (c) 2025 Daron Vener. All rights reserved.
+Copyright (c) 2025 LVMH - La Voie d'Horme (Daron Vener). All rights reserved.
 
-This software and associated documentation files (the "Software") are the proprietary and confidential property of Daron Vener.
+This software and associated documentation files (the "Software") are the proprietary and confidential property of LVMH - La Voie d'Horme.
 
 ## GRANT OF LICENSE
 
@@ -47,4 +47,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## CONTACT
 
-For licensing inquiries or questions: [Your contact information]
+For licensing inquiries or questions: daron@ccggskool.com

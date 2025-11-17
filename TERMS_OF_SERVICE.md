@@ -90,7 +90,7 @@ Examples of severe violations:
 
 ## 8. INTELLECTUAL PROPERTY
 
-- All content remains the exclusive property of Daron Vener
+- All content remains the exclusive property of LVMH - La Voie d'Horme (Daron Vener)
 - You receive a license to use, not ownership of intellectual property
 - Copyright notices must not be removed or modified
 - Trademarks and branding remain property of the licensor
@@ -164,7 +164,7 @@ For questions about these Terms of Service:
 
 - Email: daron@ccggskool.com
 - Community: [\[Program community link\]](https://www.skool.com/ccgg/about)
-- Legal inquiries: Daron Vener - daron@ccggskool.com
+- Legal inquiries: LVMH - La Voie d'Horme (Daron Vener) - daron@ccggskool.com
 
 ---
 
