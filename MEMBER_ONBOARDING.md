@@ -376,9 +376,9 @@ Claude Code will:
 
 ---
 
-## Step 8: Understand Daily Workflows
+## Step 8: Core Workflows Demo
 
-### 8.1: Your Daily Rhythm
+### 8.1: Your Daily Rhythm (Quick Reference)
 
 **Every Morning** (5 min):
 ```
@@ -388,10 +388,7 @@ Claude Code will:
 
 **Throughout the Day**:
 - Work on tasks from your roadmap
-- Ask Claude for help:
-  - "Help me create [deliverable]"
-  - "Analyze [data/document]"
-  - "Break down [project] into steps"
+- Ask Claude for help: "Help me create [deliverable]", "Analyze [data/document]"
 - Claude logs your activity automatically to `operations_log.txt`
 
 **End of Day** (5 min):
@@ -399,48 +396,165 @@ Claude Code will:
 "Assess my productivity today"
 ```
 → Productivity score (0-10), OOBG alignment analysis, tomorrow's priorities
-→ Saved to `Project Memory/Productivity Tracking/YYYY-MM-DD_daily-assessment.md`
 
 **Weekly** (Sunday/Monday, 15 min):
 ```
 "Update strategic planning"
 ```
 → Reviews last 7 days, challenges deviations, sets next week's priorities
-→ Saved to `Project Memory/Strategic Planning/YYYY-MM-DD_weekly-plan.md`
 
-### 8.2: Preview: Productivity Assessment (Demo Only)
+**Optional** (After roadmap):
+```
+"Apply brutal prioritization"
+```
+→ Identifies THE ONE THING, P1/P2/P3 rankings, KILL list
 
-**Explain** (don't run yet, just understand what it does):
+---
 
-At end of workday, ask Claude: `"Assess my productivity today"`
+### 8.2: Workflow 1 - Daily Roadmap (Already Generated in Step 7)
+
+**You already ran this!** Review the output in `Project Memory/Daily Planning/YYYY-MM-DD_daily-roadmap.md`
+
+**What it showed**:
+- **Tier 1 (Momentum)**: Unfinished work from yesterday (empty on first run)
+- **Tier 2 (Strategic)**: High-OOBG tasks based on your Strategy.md
+- **Tier 3 (Daily Disciplines)**: Fixed routines
+- **Tier 4 (Exploratory)**: Incubating projects
+
+**Use daily**: Every morning to know exactly what to work on.
+
+---
+
+### 8.3: Workflow 2 - Productivity Assessment (Try Tonight)
+
+**Command**:
+```
+Assess my productivity today
+```
 
 **What it does**:
-- Reads `operations_log.txt` (tracks work automatically when Claude creates/updates files)
+- Reads `operations_log.txt` (auto-tracks work when Claude creates/updates files)
 - Analyzes files you created/modified today
 - Calculates OOBG alignment (how strategic was your work? 0-100 scale)
 - Scores productivity (0-10 scale with detailed justification)
 - Identifies patterns (what made today productive or unproductive?)
 - Recommends tomorrow's priorities (ranked: HIGH/MEDIUM/LOW)
-- Saves assessment to `Productivity Tracking/YYYY-MM-DD_daily-assessment.md`
+- Saves to `Productivity Tracking/YYYY-MM-DD_daily-assessment.md`
 
-**Run this tonight** after your first work session.
+**Navigate to generated file** and review:
+- Score breakdown (strengths + deductions)
+- OOBG alignment average
+- Tomorrow's priorities section
 
-### 8.3: Preview: Weekly Strategic Planning (Overview Only)
+**Run tonight** after your first work session.
 
-**Explain** (start this after Week 1):
+---
 
-Every Sunday or Monday morning, ask Claude: `"Update strategic planning"`
+### 8.4: Workflow 3 - Brutal Prioritization (Optional Power Feature)
+
+**Command**:
+```
+Apply brutal prioritization
+```
 
 **What it does**:
-- Reviews last 7 days (operations log, productivity assessments, daily roadmaps)
-- Analyzes progress on strategic priorities (did you focus on OOBG work?)
-- Challenges deviations ("You said X was priority, but worked on Y - why?")
+- Evaluates tasks from roadmap on 4 dimensions: OOBG alignment, urgency, impact, effort/value ratio
+- Assigns priorities:
+  - **P1 (Must Do Today)**: 3-5 tasks, 60-80% daily effort, scores 75-100
+  - **P2 (Should Do This Week)**: 5-8 tasks, defer if P1 needs capacity, scores 50-74
+  - **P3 (Nice to Have)**: 2-4 tasks, defer without guilt, scores 30-49
+  - **KILL List**: <40% OOBG alignment, busywork, scores 0-29
+- Identifies **THE ONE THING**: Highest-scoring P1 task
+
+**Output shows**:
+- THE ONE THING (highlighted at top)
+- P1/P2/P3 tasks with scores
+- KILL list recommendations
+
+**Use when**: Task list feels overwhelming, unclear what matters most.
+
+---
+
+### 8.5: Workflow 4 - Active Projects Index Sync (Weekly Maintenance)
+
+**Command**:
+```
+Sync all project indices
+```
+
+**What it does**:
+- Scans `Active Projects/` and `Active Projects/_Incubator/`
+- Extracts: Status, deliverables, tags, progress, dependencies
+- Updates lightweight indices in `Project Memory/Active Projects Index/`
+- Updates `.last_sync` timestamp (prevents staleness warnings)
+- Logs sync to operations_log.txt
+
+**Navigate to** `Project Memory/Active Projects Index/` to see:
+- Index files for each active project
+- YAML frontmatter (status, dates, strategic alignment)
+- "Current Status" and "Key Deliverables" sections
+
+**Run weekly** or when you complete major work in projects. Enables "What am I working on?" queries across ALL projects.
+
+---
+
+### 8.6: Workflow 5 - Weekly Strategic Planning (Start After Week 1)
+
+**Command**:
+```
+Update strategic planning
+```
+
+**What it does**:
+- Checks index staleness (>7 days? offers sync first)
+- Reviews last 7 days: operations log, productivity assessments, roadmaps
+- Analyzes progress on strategic priorities
+- Challenges deviations: "You said X was priority, but worked on Y - why?"
 - Consolidates weekly goals and outcomes
-- Sets next week's priorities (based on progress + new information)
-- Identifies blockers to address
+- Sets next week's priorities
 - Saves to `Strategic Planning/YYYY-MM-DD_weekly-plan.md`
 
-**Start this habit** after your first week of daily roadmaps + assessments.
+**Navigate to generated file** to review:
+- Previous Week Review section
+- This Week's Strategic Focus
+- Active Projects Status
+- Dependency Health Check (if applicable)
+- Decisions & Commitments
+- Next Week Preview
+
+**Run every Sunday/Monday**. Prevents priority drift. Builds strategic muscle over weeks.
+
+---
+
+### 8.7: Workflow 6 - Operations Logging (Automatic)
+
+**Navigate to** `operations_log.txt` in root folder.
+
+**What you'll see**:
+- Auto-generated entries: `[YYYY-MM-DD HH:MM:SS] - [ACTION] - [project] - [details]`
+- Actions: CREATE, UPDATE, COMPLETE, SYNC, GRADUATE
+- Feeds all workflows: Daily Roadmap, Productivity Assessment, Strategic Planning
+
+**Key insight**: System logs your work automatically when Claude creates/updates files. No manual tracking required.
+
+---
+
+### 8.8: Workflow 7 - AI Growth Engine (The Brain)
+
+**Navigate to** `AI Growth Engine/Knowledge Base/`
+
+**Files you created**:
+- **Strategy.md** - OOBG, Unique Vehicle, priorities, bottleneck, 2-year vision
+- **Target_Avatars.md** - Customer profiles (1-2 avatars)
+- **Product_Information.md** (if created) - Core offers, customer journey
+
+**Why these files matter**:
+- Daily Roadmap reads these to prioritize tasks
+- Productivity Assessment uses OOBG to score alignment
+- Strategic Planning references priorities for deviation analysis
+- **These 3 files = your business brain**
+
+**Update as strategy evolves**. More detail = better prioritization.
 
 ---
 
