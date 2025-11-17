@@ -1,19 +1,19 @@
-# Settings.json Implementation Guide - CCGG Business Operations
+# Settings.json Implementation Guide - Claude Code OS
 
 **Date Created**: 2025-11-05
 **Status**: Production (Institutional Knowledge)
-**Version**: 1.0
+**Version**: 1.1 (Generalized for all users)
 **Source**: Lessons learned from Nov 2025 settings optimization implementation
 
 ---
 
 ## Purpose
 
-This guide documents **when and how to use settings.json/settings.local.json** in CCGG Business Operations, including all limitations, bugs, and best practices discovered during our Nov 2025 implementation.
+This guide documents **when and how to use settings.json/settings.local.json** in Claude Code OS, including all limitations, bugs, and best practices discovered during implementation and testing.
 
-**Target Audience**: Future Claude Code sessions implementing settings-based mechanisms
+**Target Audience**: Claude Code sessions implementing settings-based mechanisms
 
-**Key Goal**: Avoid repeating the mistakes and trial-and-error from Nov 2025
+**Key Goal**: Avoid repeating mistakes and trial-and-error
 
 ---
 
@@ -21,10 +21,10 @@ This guide documents **when and how to use settings.json/settings.local.json** i
 
 ### ✅ Use settings.json For:
 
-| Use Case | Why It Works | Example from CCGG |
-|----------|--------------|-------------------|
-| **Approved Read Patterns** | Eliminate approval prompts for routine operations | `Read(//c/Users/Raphael/1 PROJECTS/AI Growth Engine with POV/AI Growth Engine/Knowledge Base/**)` - Saves 10-20 min/day |
-| **Environment Variables** | Claude Code internal use (scripts, hooks, skills) | `CCGG_OPERATIONS_ROOT`, `CCGG_KB_PATH` - Available to hooks and skills |
+| Use Case | Why It Works | Example |
+|----------|--------------|---------|
+| **Approved Read Patterns** | Eliminate approval prompts for routine operations | `Read(operations_log.txt)`, `Read(AI Growth Engine/Knowledge Base/**)` - Saves 10-20 min/day |
+| **Environment Variables** | Claude Code internal use (scripts, hooks, skills) | `BUSINESS_ROOT`, `KB_PATH` - Available to hooks and skills |
 | **File Write Hooks** | Automatic logging, validation, processing after file writes | `PostToolUse` hook → operations_log.txt logging |
 | **Bash Deny Rules** | Block dangerous commands | `rm -rf:*`, `git push --force:*`, `git reset --hard:*` - **WORK CORRECTLY** |
 | **Bash Approved Commands** | Pre-approve specific bash patterns | `Bash(git commit:*)`, `Bash(py:*)` |
@@ -68,7 +68,7 @@ This guide documents **when and how to use settings.json/settings.local.json** i
 **What Fails**:
 ```json
 "deny": [
-  "Write(//c/Users/Raphael/1 PROJECTS/AI Growth Engine with POV/**)",  // IGNORED
+  "Write(AI Growth Engine/Knowledge Base/**)",  // IGNORED
   "Read(.env)",  // IGNORED
   "Write(credentials.json)"  // IGNORED
 ]
@@ -99,7 +99,7 @@ This guide documents **when and how to use settings.json/settings.local.json** i
 **What Happens**:
 ```json
 "env": {
-  "CCGG_OPERATIONS_ROOT": "c:\\Users\\Raphael\\1 PROJECTS\\CCGG Business Operations"
+  "BUSINESS_ROOT": "/path/to/your/business/operations"
 }
 ```
 
@@ -108,7 +108,7 @@ This guide documents **when and how to use settings.json/settings.local.json** i
 
 **Test**:
 ```bash
-echo $CCGG_OPERATIONS_ROOT  # Empty (not set)
+echo $BUSINESS_ROOT  # Empty (not set)
 ```
 
 **Use Case**: Pass paths to hooks, reference in skill code, use in scripts via Claude Code API
@@ -124,13 +124,13 @@ echo $CCGG_OPERATIONS_ROOT  # Empty (not set)
 2. `.claude/settings.json` ← Overridden by local
 3. `~/.claude/settings.json` ← Overridden by both
 
-**Critical Mistake We Made**: Created settings.json but settings.local.json already existed → settings.json was completely ignored
+**Critical Mistake**: Creating settings.json but settings.local.json already exists → settings.json is completely ignored
 
 **Solution**: Put ALL settings in settings.local.json (the file that actually loads)
 
 **When to Use Each**:
 - `settings.local.json`: Machine-specific config (approved read paths, local env vars) - **PRIMARY FILE**
-- `settings.json`: Team template (gitignored in CCGG, but useful for reference)
+- `settings.json`: Team template (gitignored, but useful for reference)
 - `~/.claude/settings.json`: Global defaults across all projects (rarely needed)
 
 ---
@@ -141,9 +141,9 @@ echo $CCGG_OPERATIONS_ROOT  # Empty (not set)
 
 **Example**:
 ```
-CCGG Business Operations/AI Growth Engine/Knowledge Base (junction)
+Your Project/AI Growth Engine/Knowledge Base (junction)
   ↓ (resolves to)
-AI Growth Engine with POV/AI Growth Engine/Knowledge Base (physical)
+AI Growth Engine Source/AI Growth Engine/Knowledge Base (physical)
 ```
 
 **What Happens**: Write to junction → Windows resolves to physical path → deny rule only covers junction path → write allowed (bypass)
@@ -151,8 +151,8 @@ AI Growth Engine with POV/AI Growth Engine/Knowledge Base (physical)
 **Solution**: Add deny rules for BOTH paths:
 ```json
 "deny": [
-  "Write(//c/Users/Raphael/1 PROJECTS/CCGG Business Operations/AI Growth Engine/Knowledge Base/**)",  // Junction
-  "Write(//c/Users/Raphael/1 PROJECTS/AI Growth Engine with POV/AI Growth Engine/Knowledge Base/**)"  // Physical
+  "Write(Your Project/AI Growth Engine/Knowledge Base/**)",  // Junction
+  "Write(AI Growth Engine Source/AI Growth Engine/Knowledge Base/**)"  // Physical
 ]
 ```
 
@@ -163,14 +163,14 @@ AI Growth Engine with POV/AI Growth Engine/Knowledge Base (physical)
 ### Limitation 5: Path Format Sensitivity
 
 **Windows Paths**: Two formats work, but you need to escape backslashes
-- Unix-style: `//c/Users/Raphael/1 PROJECTS/...`
-- Windows-style: `c:\\Users\\Raphael\\1 PROJECTS\\...` (double backslash required in JSON)
+- Unix-style: `//c/Users/YourName/Documents/...`
+- Windows-style: `c:\\Users\\YourName\\Documents\\...` (double backslash required in JSON)
 
 **Defense-in-Depth**: Include both formats for maximum compatibility:
 ```json
 "deny": [
-  "Write(//c/Users/Raphael/1 PROJECTS/CCGG Business Operations/.env)",  // Unix-style
-  "Write(c:\\Users\\Raphael\\1 PROJECTS\\CCGG Business Operations\\.env)"  // Windows-style
+  "Write(//c/Users/YourName/Documents/Project/.env)",  // Unix-style
+  "Write(c:\\Users\\YourName\\Documents\\Project\\.env)"  // Windows-style
 ]
 ```
 
@@ -190,7 +190,7 @@ AI Growth Engine with POV/AI Growth Engine/Knowledge Base (physical)
 
 - [ ] Determine which file to edit:
   - **settings.local.json** ← Use this (machine-specific, highest priority)
-  - settings.json ← Only for team templates (rarely used in CCGG)
+  - settings.json ← Only for team templates (rarely used)
 - [ ] Check if settings.local.json exists: `ls .claude/settings.local.json`
 - [ ] If exists: Read existing content, merge new settings
 - [ ] If doesn't exist: Create from scratch
@@ -226,7 +226,7 @@ AI Growth Engine with POV/AI Growth Engine/Knowledge Base (physical)
 - [ ] If tests pass: Merge to master
 - [ ] If tests fail: Iterate on fixes, retest
 - [ ] Delete feature branch after successful merge
-- [ ] Push to GitHub
+- [ ] Push to GitHub (if applicable)
 - [ ] Log completion to operations_log.txt
 
 ---
@@ -295,14 +295,14 @@ Ask Claude: "Run: rm -rf test-folder"
 
 **Test**:
 ```
-Ask Claude: "Echo $CCGG_OPERATIONS_ROOT in PowerShell"
+Ask Claude: "Echo $BUSINESS_ROOT in PowerShell"
 ```
 
 **Expected**: ❌ Empty/undefined (env vars don't propagate to shell by design)
 
 **But Check Hook Access**:
 ```json
-"command": "powershell -Command \"echo $env:CCGG_OPERATIONS_ROOT\""
+"command": "powershell -Command \"echo $env:BUSINESS_ROOT\""
 ```
 
 **Expected**: ✅ Works in hook context (Claude Code internal use)
@@ -393,18 +393,18 @@ Ask Claude: "Write to AI Growth Engine/Knowledge Base/test-deny.md"
 
 ---
 
-## Examples from CCGG Implementation
+## Example Implementation
 
 ### Example 1: Approved Read Optimization (Working)
 
-**Problem**: Approval prompts for routine operations wasted 10-20 min/day
+**Problem**: Approval prompts for routine operations waste time
 
 **Solution**:
 ```json
 "allow": [
-  "Read(//c/Users/Raphael/1 PROJECTS/AI Growth Engine with POV/AI Growth Engine/Knowledge Base/**)",
-  "Read(//c/Users/Raphael/1 PROJECTS/CCGG Business Operations/AI Growth Engine/Knowledge Base/**)",
-  "Read(//c/Users/Raphael/1 PROJECTS/CCGG Business Operations/operations_log.txt)"
+  "Read(AI Growth Engine/Knowledge Base/**)",
+  "Read(operations_log.txt)",
+  "Read(Project Memory/**)"
 ]
 ```
 
@@ -468,8 +468,7 @@ Ask Claude: "Write to AI Growth Engine/Knowledge Base/test-deny.md"
 **Attempted Solution**:
 ```json
 "deny": [
-  "Write(//c/Users/Raphael/1 PROJECTS/AI Growth Engine with POV/AI Growth Engine/Knowledge Base/**)",
-  "Write(//c/Users/Raphael/1 PROJECTS/CCGG Business Operations/AI Growth Engine/Knowledge Base/**)"
+  "Write(AI Growth Engine/Knowledge Base/**)"
 ]
 ```
 
@@ -507,7 +506,7 @@ Ask Claude: "Write to AI Growth Engine/Knowledge Base/test-deny.md"
 
 ---
 
-## Future Improvements (Phase 2+)
+## Future Improvements
 
 ### When Anthropic Fixes Bug 1 (Read/Write Deny Rules)
 
@@ -516,7 +515,6 @@ Ask Claude: "Write to AI Growth Engine/Knowledge Base/test-deny.md"
 **Action**:
 - Existing deny rules will automatically activate (already configured)
 - Retest Read/Write deny rules
-- Update SETTINGS_GUIDE.md (Bug 1 fixed)
 - Update this guide (move to "What Works" section)
 
 ---
@@ -527,18 +525,17 @@ Ask Claude: "Write to AI Growth Engine/Knowledge Base/test-deny.md"
 
 **Complexity**: High (requires custom logic, JSON parsing, pattern matching)
 
-**Deferred**: Phase 2+ (wait for Anthropic fix first)
+**Deferred**: Wait for Anthropic fix first
 
 ---
 
 ## References
 
-- **CCGG Implementation**: `.claude/SETTINGS_GUIDE.md` (project-specific config v1.3)
 - **Official Docs**: https://docs.claude.com/en/docs/claude-code/settings
 - **Bug Reports**:
   - Primary: https://github.com/anthropics/claude-code/issues/6631
   - Related: #6699, #4467, #8961
-- **Root CLAUDE.md**: Settings.json configuration section (this guide referenced)
+- **Your CLAUDE.md**: Settings.json configuration section (this guide referenced)
 
 ---
 
@@ -546,6 +543,7 @@ Ask Claude: "Write to AI Growth Engine/Knowledge Base/test-deny.md"
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.1 | 2025-11-17 | Generalized for all users (removed business-specific references) |
 | 1.0 | 2025-11-05 | Initial guide created from Nov 2025 settings optimization lessons learned |
 
 ---
