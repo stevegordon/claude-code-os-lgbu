@@ -826,9 +826,10 @@ fatal: Authentication failed for 'https://github.com/...'
 
 ## Support Resources
 
-- **Community**: [Link provided by admin] - Ask questions, share wins, troubleshoot together
-- **Weekly Group Calls**: [Schedule provided by admin] - Live Q&A, advanced features
-- **DM Admin**: For urgent or private issues
+- **Skool Community**: https://www.skool.com/ccgg - Ask questions, share wins, troubleshoot together
+- **Weekly Group Calls**: Schedule posted in Skool community - Live Q&A, advanced features demos
+- **DM Daron**: daron@ccggskool.com - For urgent or private issues (24-48h response time)
+- **GitHub Issues**: https://github.com/DaronVee/claude-code-os-lgbu/issues - For bugs or feature requests
 - **README.md**: Full system documentation in your cloned folder
 - **CLAUDE.md**: Complete system instructions (customize for your business)
 

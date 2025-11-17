@@ -344,15 +344,15 @@ See [PRODUCT_UPDATE_PROTOCOL.md](PRODUCT_UPDATE_PROTOCOL.md) for:
 
 ## Where to Get Support
 
-- **Community**: [Your program community link - Skool, Discord, etc.]
-- **Group Calls**: Weekly strategy calls with program members
-- **DM**: Direct message support for urgent issues
-- **GitHub Issues**: For bugs or feature requests (link if applicable)
+- **Skool Community**: https://www.skool.com/ccgg (post questions, share wins, troubleshoot together)
+- **Group Calls**: Weekly live sessions with program members (schedule posted in Skool)
+- **DM Daron**: For urgent or private issues - daron@ccggskool.com
+- **GitHub Issues**: For bugs or feature requests - https://github.com/DaronVee/claude-code-os-lgbu/issues
 
 **Response Times**:
-- Community: Usually within 24 hours (other members may help faster)
-- Group calls: Real-time support during scheduled calls
-- DM: Best-effort (usually same day for critical issues)
+- Skool Community: Usually within 24 hours (other members may help faster)
+- Group Calls: Real-time support during scheduled sessions
+- DM: Best-effort (usually same day for critical issues, 24-48h for non-urgent)
 
 ---
 
