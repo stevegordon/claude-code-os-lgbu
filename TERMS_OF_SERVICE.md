@@ -152,8 +152,8 @@ TO THE MAXIMUM EXTENT PERMITTED BY LAW:
 
 ## 14. GOVERNING LAW
 
-- These Terms are governed by [Your Jurisdiction]
-- Disputes resolved through [Arbitration/Court] in [Location]
+- These Terms are governed by French law
+- Disputes resolved through the Commercial Court (Tribunal de Commerce) of Valence, France
 - Prevailing party entitled to attorney fees
 
 ---
@@ -162,9 +162,9 @@ TO THE MAXIMUM EXTENT PERMITTED BY LAW:
 
 For questions about these Terms of Service:
 
-- Email: [Your support email]
-- Community: [Program community link]
-- Legal inquiries: [Legal contact]
+- Email: daron@ccggskool.com
+- Community: [\[Program community link\]](https://www.skool.com/ccgg/about)
+- Legal inquiries: Daron Vener - daron@ccggskool.com
 
 ---
 
