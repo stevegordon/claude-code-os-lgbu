@@ -8,3 +8,7 @@ Actions: CREATE, UPDATE, SYNC, COMPLETE, GRADUATE, ARCHIVE, SYSTEM_UPGRADE
 
 ---
 
+[2025-11-17 16:25:33] - CREATE - claude-code-os-customization - Project created in Active Projects/ with 3-phase plan (Knowledge Base Setup, System Validation, Institutionalization)
+[2025-11-18 08:44:19] PROJECT CREATED: avatar-upgrade-workshop - AI assistant project for interviewing users to create upgraded avatar/ideal client definitions within the Upgrade Your Avatar framework. Purpose: Help users raise and command higher fees. Location: /Users/stevegordon/Documents/mdaos/claude-code-os-lgbu/Active Projects/avatar-upgrade-workshop/
+[2025-11-18 10:14:16] SOLUTION: Split GPT instructions to fit 8K char limit. Created avatar-gpt-instructions-condensed.md (3,936 chars) for GPT Instructions field. Existing avatar-gpt-process.md and avatar-gpt-knowledge-base.md serve as uploaded Knowledge files. See FILE-STRUCTURE.md for complete setup guide.
+[2025-11-18 14:00:28] UPDATE: Added 'challenge small thinking' guidance to GPT. Instructions now include kind but firm pushback when users think incrementally instead of transformationally. Added 70+ specific challenge examples in process doc. Character count: 4,666 (still under 8K limit with 41% headroom).
