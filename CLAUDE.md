@@ -13,44 +13,31 @@ This project is **operational** - you help DO the work through systematic produc
 
 ---
 
-## WINDOWS ENVIRONMENT - CRITICAL CODING STANDARDS
+## macOS ENVIRONMENT - CODING STANDARDS
 
-**User Environment**: Windows 10/11 (cp1252 console encoding by default)
-**Global Reference**: `~/.claude/WINDOWS_CODING_STANDARDS.md`
+**User Environment**: macOS (UTF-8 native encoding)
+**Shell**: zsh (default on macOS Catalina+)
 
-### MANDATORY: ASCII-Only Python Print Statements
+### Python Unicode Support
 
-**❌ NEVER use Unicode in Python scripts:**
+**✅ macOS fully supports Unicode:**
 ```python
-print("✅ Success")  # WRONG - causes UnicodeEncodeError
+print("✅ Success")  # Works perfectly - UTF-8 is native
+print("[OK] Success")  # Also works - ASCII is always safe
 ```
 
-**✅ ALWAYS use ASCII markers:**
-```python
-print("[OK] Success")  # CORRECT - Windows compatible
-```
+### Standard Output Markers
 
-### Standard ASCII Markers
+Both Unicode and ASCII markers work on macOS:
 
-| Purpose | Marker | Example |
-|---------|--------|---------|
-| Success | `[OK]` | `[OK] Validation passed` |
-| Error | `[ERROR]` | `[ERROR] File not found` |
-| Warning | `[WARNING]` | `[WARNING] Missing field` |
-| Info | `[INFO]` | `[INFO] Processing...` |
-| Tip | `[TIP]` | `[TIP] Consider X` |
+| Purpose | Unicode | ASCII | Example |
+|---------|---------|-------|---------|
+| Success | ✅ | `[OK]` | `✅ Validation passed` or `[OK] Validation passed` |
+| Error | ❌ | `[ERROR]` | `❌ File not found` or `[ERROR] File not found` |
+| Warning | ⚠️ | `[WARNING]` | `⚠️ Missing field` or `[WARNING] Missing field` |
+| Info | ℹ️ | `[INFO]` | `ℹ️ Processing...` or `[INFO] Processing...` |
 
-### When Creating Python Scripts
-
-**BEFORE writing ANY Python script**, verify:
-1. ✅ Print statements use ASCII-only markers
-2. ✅ No emojis (✅❌⚠️📁🚀💡) in output
-3. ✅ Use `=` or `-` for separators, NOT Unicode box drawing
-4. ✅ Test without `-X utf8` flag
-
-**Rationale**: Windows console uses cp1252 encoding. Unicode emojis cause `UnicodeEncodeError` crashes. This is a **recurring issue** that has affected multiple projects.
-
-**Full Documentation**: See `~/.claude/WINDOWS_CODING_STANDARDS.md` for complete guidelines.
+**Note**: macOS terminal fully supports Unicode emojis and UTF-8 characters. No encoding issues.
 
 ---
 
@@ -76,133 +63,210 @@ This guide contains lessons learned from implementation:
 
 ---
 
-## WINDOWS POWERSHELL COMMAND PATTERNS
+## macOS SHELL COMMAND PATTERNS
 
-**Shell Environment**: Claude Code Bash tool uses your system's **default shell** (PowerShell on Windows, zsh on macOS, bash on Linux). No shell configuration options exist in settings.json (feature request GitHub #7490).
+**Shell Environment**: Claude Code Bash tool uses your system's **default shell** (zsh on macOS, bash on Linux, PowerShell on Windows). No shell configuration options exist in settings.json (feature request GitHub #7490).
 
-**Windows Reality**: PowerShell is the system default on Windows 10/11. All Bash tool commands execute in PowerShell context.
+**macOS Reality**: zsh is the default shell on macOS Catalina+ (10.15+). All Bash tool commands execute in zsh context.
 
-**Critical Rule**: DO NOT use Windows CMD commands (`dir`, `findstr`, `forfiles`) directly in Bash tool calls. They fail in Git Bash environment and cause syntax errors.
+**Critical Rule**: Use standard Unix/BSD commands that work in zsh/bash environment. Avoid platform-specific syntax.
 
-### Recommended Approach: Explicit PowerShell Invocation
+### Recommended Approach: Native Unix Commands
 
-**Pattern**: Always invoke PowerShell explicitly via `powershell -Command "..."`
+**Pattern**: Use standard Unix commands (grep, find, ls, date) that work natively in zsh/bash.
 
-**Why**: Works reliably across CMD, PowerShell, and Git Bash environments.
+**Why**: Native commands are faster, more reliable, and don't require subprocess invocation.
 
 ### Common Data Extraction Patterns
 
 #### 1. List Files Sorted by Date (Index Staleness Checks)
 
-**DON'T USE** (fails in Git Bash):
+**USE THIS** (simple, fast):
 ```bash
-dir "Project Memory\Active Projects Index\*-index.md" /b /o-d
+ls -t "Project Memory/Active Projects Index"/*-index.md 2>/dev/null | head -20
 ```
 
-**USE THIS** (works everywhere):
-```powershell
-powershell -Command "Get-ChildItem 'Project Memory\Active Projects Index\*-index.md' -File | Sort-Object LastWriteTime -Descending | Select-Object -ExpandProperty FullName"
+**OR** (more detailed with full paths):
+```bash
+find "Project Memory/Active Projects Index" -name "*-index.md" -type f -exec stat -f "%m %N" {} \; | sort -rn | cut -d' ' -f2-
 ```
+
+**Explanation**:
+- `ls -t` sorts by modification time (newest first)
+- `find` + `stat -f "%m %N"` gets epoch time + filename (BSD stat syntax)
+- `sort -rn` sorts numerically in reverse (newest first)
 
 #### 2. Search Text with Date Pattern (Operations Log Parsing)
 
-**DON'T USE** (fails in Git Bash):
+**USE THIS** (regex pattern):
 ```bash
-findstr /r "^\[2025-11-14" operations_log.txt
+grep "^\[2025-11-14" operations_log.txt
 ```
 
-**USE THIS** (works everywhere):
-```powershell
-powershell -Command "Select-String -Path 'operations_log.txt' -Pattern '^\[2025-11-14' | Select-Object -ExpandProperty Line"
+**OR** (extended regex if needed):
+```bash
+grep -E "^\[2025-11-14" operations_log.txt
 ```
 
-**Note**: Use `-SimpleMatch` for literal strings (no regex):
-```powershell
-powershell -Command "Select-String -Path 'operations_log.txt' -Pattern '2025-11-14' -SimpleMatch"
+**For literal string matching** (no regex):
+```bash
+grep -F "2025-11-14" operations_log.txt
 ```
+
+**Explanation**:
+- `grep` is the standard Unix text search tool (BSD grep on macOS)
+- `^` matches start of line (works in basic mode)
+- `-E` enables extended regex (optional for this pattern)
+- `-F` treats pattern as literal string (fastest for non-regex searches)
 
 #### 3. Find Files Modified Yesterday (File Modification Detection)
 
-**DON'T USE** (fails in Git Bash):
+**USE THIS** (last 24 hours):
 ```bash
-dir /s /b /a-d | findstr "2025-11-13"
+find "Active Projects" "Project Memory" -type f -mtime -1
 ```
 
-**USE THIS** (works everywhere):
-```powershell
-powershell -Command "Get-ChildItem -Path 'Active Projects','Project Memory' -Recurse -File | Where-Object { $_.LastWriteTime -ge '2025-11-13' -and $_.LastWriteTime -lt '2025-11-14' } | Select-Object -ExpandProperty FullName"
+**OR** (more precise - files modified in last 24 hours, but not in last hour):
+```bash
+find "Active Projects" "Project Memory" -type f -mtime -1 -mtime +0
 ```
 
-**Dynamic Date** (yesterday):
-```powershell
-powershell -Command "$yesterday = (Get-Date).AddDays(-1).ToString('yyyy-MM-dd'); Get-ChildItem -Path 'Active Projects','Project Memory' -Recurse -File | Where-Object { $_.LastWriteTime -ge $yesterday } | Select-Object -ExpandProperty FullName"
+**For specific date range** (requires GNU find via `brew install findutils`):
+```bash
+gfind "Active Projects" "Project Memory" -type f -newermt "2025-11-13 00:00:00" ! -newermt "2025-11-14 00:00:00"
 ```
+
+**Explanation**:
+- `find -mtime -1` finds files modified in last 24 hours
+- `-mtime -1 -mtime +0` excludes files modified in current day (yesterday only)
+- BSD find (default macOS) uses `-mtime` (day-based)
+- GNU find (`gfind`) supports `-newermt` for precise timestamps
 
 #### 4. Calculate Days Since Timestamp (Staleness Calculation)
 
 **Pattern**: Read .last_sync file, parse date, calculate difference
 
-```powershell
-powershell -Command "$content = Get-Content 'Project Memory\Active Projects Index\.last_sync' -Raw; $lastSync = [datetime]::ParseExact($content.Trim(), 'yyyy-MM-dd HH:mm:ss', $null); $daysSince = (New-TimeSpan -Start $lastSync -End (Get-Date)).Days; Write-Output $daysSince"
+**Full command** (with error handling):
+```bash
+last=$(cat "Project Memory/Active Projects Index/.last_sync" 2>/dev/null | tr -d '[:space:]'); if [ -n "$last" ]; then last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last" +%s 2>/dev/null || echo 0); now=$(date +%s); echo $(( (now - last_epoch) / 86400 )); else echo 999; fi
 ```
 
-**Error Handling** (if file missing):
-```powershell
-powershell -Command "if (Test-Path 'Project Memory\Active Projects Index\.last_sync') { $content = Get-Content 'Project Memory\Active Projects Index\.last_sync' -Raw; $lastSync = [datetime]::ParseExact($content.Trim(), 'yyyy-MM-dd HH:mm:ss', $null); $daysSince = (New-TimeSpan -Start $lastSync -End (Get-Date)).Days; Write-Output $daysSince } else { Write-Output 999 }"
+**Explanation (step-by-step)**:
+```bash
+# Read file, remove all whitespace
+last=$(cat "Project Memory/Active Projects Index/.last_sync" | tr -d '[:space:]')
+
+# Parse date to epoch seconds (BSD date on macOS)
+last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last" +%s)
+
+# Get current epoch
+now=$(date +%s)
+
+# Calculate days difference (86400 seconds = 1 day)
+days_since=$(( (now - last_epoch) / 86400 ))
+
+echo "$days_since"
 ```
+
+**With error handling** (fallback to 999 if file missing):
+```bash
+if [ -f "Project Memory/Active Projects Index/.last_sync" ]; then
+  last=$(cat "Project Memory/Active Projects Index/.last_sync" | tr -d '[:space:]')
+  last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last" +%s 2>/dev/null || echo 0)
+  now=$(date +%s)
+  echo $(( (now - last_epoch) / 86400 ))
+else
+  echo 999
+fi
+```
+
+**Key differences from Windows**:
+- Use `date -j -f` (BSD date) instead of `[datetime]::ParseExact`
+- Calculate epoch difference manually (seconds / 86400 = days)
+- Forward slashes `/` in paths (not backslashes `\`)
 
 #### 5. Write Timestamp to File (Update .last_sync)
 
 **Pattern**: Write current timestamp in ISO 8601 format
 
-```powershell
-powershell -Command "Get-Date -Format 'yyyy-MM-dd HH:mm:ss' | Out-File 'Project Memory\Active Projects Index\.last_sync' -Encoding UTF8 -NoNewline"
+**USE THIS** (guaranteed no newline):
+```bash
+printf "%s" "$(date '+%Y-%m-%d %H:%M:%S')" > "Project Memory/Active Projects Index/.last_sync"
 ```
 
-**Why `-NoNewline`**: Prevents extra blank line at end of file (cleaner for parsing).
+**OR** (using tr to remove newline):
+```bash
+date "+%Y-%m-%d %H:%M:%S" | tr -d '\n' > "Project Memory/Active Projects Index/.last_sync"
+```
+
+**Explanation**:
+- `date '+%Y-%m-%d %H:%M:%S'` formats current time (ISO 8601)
+- `printf "%s"` writes without adding newline
+- `tr -d '\n'` removes newline character
+- Forward slashes `/` in path (not backslashes)
 
 #### 6. Parse Last 7 Days of Log Entries (Weekly Strategic Planning)
 
 **Pattern**: Dynamic date calculation + pattern matching
 
-```powershell
-powershell -Command "$startDate = (Get-Date).AddDays(-7).ToString('yyyy-MM-dd'); Select-String -Path 'operations_log.txt' -Pattern \"^\[$startDate\" | Select-Object -ExpandProperty Line"
+**USE THIS** (specific start date - 7 days ago):
+```bash
+start_date=$(date -v-7d "+%Y-%m-%d")
+grep "^\[$start_date" operations_log.txt
 ```
 
 **For all dates in last 7 days** (more flexible):
-```powershell
-powershell -Command "$sevenDaysAgo = (Get-Date).AddDays(-7); Select-String -Path 'operations_log.txt' -Pattern '^\[' | Where-Object { $_.Line -match '^\[(\d{4}-\d{2}-\d{2})' -and [datetime]::ParseExact($matches[1], 'yyyy-MM-dd', $null) -ge $sevenDaysAgo } | Select-Object -ExpandProperty Line"
+```bash
+# Get epoch for 7 days ago
+seven_days_ago=$(date -v-7d +%s)
+
+# Extract lines, parse dates, filter
+grep "^\[" operations_log.txt | while IFS= read -r line; do
+  # Extract date from line (assumes format [YYYY-MM-DD ...)
+  log_date=$(echo "$line" | grep -o "^\[20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]" | tr -d '[')
+  if [ -n "$log_date" ]; then
+    log_epoch=$(date -j -f "%Y-%m-%d" "$log_date" +%s 2>/dev/null || echo 0)
+    if [ "$log_epoch" -ge "$seven_days_ago" ]; then
+      echo "$line"
+    fi
+  fi
+done
 ```
 
-### PowerShell Best Practices
+**Explanation**:
+- `date -v-7d` calculates date 7 days ago (BSD date syntax)
+- `grep -o` extracts only matching date pattern
+- Loop through each line, parse date, compare epoch times
+
+### Bash/zsh Best Practices
 
 **1. Quoting Rules**:
 - Single quotes `'...'` for literal strings (no variable expansion)
 - Double quotes `"..."` for strings with variables
-- Escape nested quotes: `\"` inside outer double quotes
+- Escape special characters with backslash: `\$`, `\"`, etc.
 
 **2. Path Separators**:
-- Use Windows backslashes `\` in PowerShell paths (NOT forward slashes `/`)
-- Example: `'Project Memory\Active Projects Index\.last_sync'` (CORRECT)
-- Example: `'Project Memory/Active Projects Index/.last_sync'` (WRONG in PowerShell)
+- Use forward slashes `/` in Unix paths (NOT backslashes `\`)
+- Example: `'Project Memory/Active Projects Index/.last_sync'` (CORRECT)
+- Example: `'Project Memory\Active Projects Index\.last_sync'` (WRONG on macOS)
 
 **3. Error Handling**:
-- Add `Test-Path` checks before file operations
-- Use `-ErrorAction SilentlyContinue` to suppress non-critical errors
-- Provide fallback values (e.g., `Write-Output 999` for missing .last_sync)
+- Add `[ -f "file" ]` checks before file operations
+- Use `2>/dev/null` to suppress error output
+- Provide fallback values (e.g., `|| echo 999` for missing .last_sync)
 
 **4. Output Format**:
-- Use `| Select-Object -ExpandProperty [PropertyName]` to get plain text (not objects)
-- Example: `Select-Object -ExpandProperty FullName` → file paths as strings
-- Example: `Select-Object -ExpandProperty Line` → log lines as strings
+- Most Unix commands output plain text by default
+- Use pipes `|` to chain commands (e.g., `grep | cut | sort`)
+- Redirect output with `>` (overwrite) or `>>` (append)
 
 ### Alternative: Use Read Tool for File Operations
 
-**When possible**, prefer Read tool over Bash/PowerShell for file reads:
+**When possible**, prefer Read tool over bash commands for file reads:
 
-**PowerShell approach**:
-```powershell
-powershell -Command "Get-Content 'Project Memory\Active Projects Index\.last_sync'"
+**Bash approach**:
+```bash
+cat "Project Memory/Active Projects Index/.last_sync"
 ```
 
 **Read tool approach** (simpler, more reliable):
@@ -210,15 +274,15 @@ powershell -Command "Get-Content 'Project Memory\Active Projects Index\.last_syn
 Read: Project Memory/Active Projects Index/.last_sync
 ```
 
-**Rule**: Use Read tool for **reading files**, use PowerShell for **file operations** (listing, filtering, date calculations).
+**Rule**: Use Read tool for **reading files**, use bash for **file operations** (listing, filtering, date calculations).
 
 ### Glob Tool for File Discovery
 
-**When finding files by pattern**, prefer Glob tool over PowerShell:
+**When finding files by pattern**, prefer Glob tool over bash commands:
 
-**PowerShell approach**:
-```powershell
-powershell -Command "Get-ChildItem 'Project Memory\Active Projects Index\*-index.md'"
+**Bash approach**:
+```bash
+find "Project Memory/Active Projects Index" -name "*-index.md"
 ```
 
 **Glob tool approach** (simpler):
@@ -226,7 +290,7 @@ powershell -Command "Get-ChildItem 'Project Memory\Active Projects Index\*-index
 Glob: Project Memory/Active Projects Index/*-index.md
 ```
 
-**Rule**: Use Glob for **file pattern matching**, use PowerShell for **date filtering** and **complex queries**.
+**Rule**: Use Glob for **file pattern matching**, use bash for **date filtering** and **complex queries**.
 
 ### Summary: Tool Selection Matrix
 
@@ -234,13 +298,13 @@ Glob: Project Memory/Active Projects Index/*-index.md
 |------|------|---------|
 | Read file content | Read tool | `Read: path/to/file.md` |
 | Find files by pattern | Glob tool | `Glob: path/*-index.md` |
-| Filter files by date | PowerShell | `Get-ChildItem ... | Where-Object { $_.LastWriteTime -ge '2025-11-13' }` |
-| Parse log by date | PowerShell | `Select-String -Path 'operations_log.txt' -Pattern '^\[2025-11-14'` |
-| Calculate date diff | PowerShell | `(New-TimeSpan -Start $date1 -End $date2).Days` |
-| Write timestamp | PowerShell | `Get-Date -Format 'yyyy-MM-dd HH:mm:ss' | Out-File ...` |
-| List files sorted | PowerShell | `Get-ChildItem ... | Sort-Object LastWriteTime -Descending` |
+| Filter files by date | Bash/find | `find ... -type f -mtime -1` OR `gfind ... -newermt "2025-11-13"` (GNU find) |
+| Parse log by date | Bash/grep | `grep "^\[2025-11-14" operations_log.txt` |
+| Calculate date diff | Bash/date | `echo $(( ($(date +%s) - $(date -j -f "%Y-%m-%d %H:%M:%S" "$last" +%s)) / 86400 ))` |
+| Write timestamp | Bash/date | `printf "%s" "$(date '+%Y-%m-%d %H:%M:%S')" > file.txt` |
+| List files sorted | Bash/ls | `ls -t "Project Memory/Active Projects Index"/*-index.md` |
 
-**Golden Rule**: Minimize Bash tool usage. Maximize Read/Glob tool usage. Use PowerShell only for operations that require shell logic (date math, filtering, sorting).
+**Golden Rule**: Minimize Bash tool usage. Maximize Read/Glob tool usage. Use bash only for operations that require shell logic (date math, filtering, sorting).
 
 ---
 
@@ -251,7 +315,7 @@ Glob: Project Memory/Active Projects Index/*-index.md
 ### Core Principles
 
 1. **Never Block on File Read Errors**: If a file doesn't exist or can't be read, use fallback data and warn the user
-2. **Validate Before Executing Shell Commands**: Check preconditions before running PowerShell commands
+2. **Validate Before Executing Shell Commands**: Check preconditions before running bash commands
 3. **Log All Errors**: Record failures to operations_log.txt for debugging and pattern analysis
 4. **Provide Clear User Guidance**: Explain what failed, why, and what action to take
 
@@ -268,16 +332,16 @@ Glob: Project Memory/Active Projects Index/*-index.md
 - **Continue or Block**: CONTINUE with roadmap generation (staleness check is advisory, not blocking)
 - **Log Entry**: `[DATE] - ERROR - daily-roadmap - .last_sync read failed: [reason]. Treating as 999 days stale.`
 
-**Error Scenario 2**: PowerShell date calculation fails
-- **Detection**: PowerShell command exits with non-zero code or returns invalid output
+**Error Scenario 2**: Bash date calculation fails
+- **Detection**: Bash command exits with non-zero code or returns invalid output
 - **Fallback Behavior**: Use Read tool + manual date parsing (check timestamp format, compare to current date)
-- **User Warning**: "⚠️ PowerShell date calculation failed - using fallback method"
+- **User Warning**: "⚠️ Bash date calculation failed - using fallback method"
 - **Continue or Block**: CONTINUE with alternative method
-- **Log Entry**: `[DATE] - ERROR - daily-roadmap - PowerShell date calc failed. Used fallback method.`
+- **Log Entry**: `[DATE] - ERROR - daily-roadmap - Bash date calc failed. Used fallback method.`
 
 **Error Scenario 3**: operations_log.txt parsing fails
-- **Detection**: PowerShell Select-String returns error or empty results unexpectedly
-- **Fallback Behavior**: Use simplified pattern without regex (e.g., `findstr "YYYY-MM-DD"`)
+- **Detection**: grep returns error or empty results unexpectedly
+- **Fallback Behavior**: Use simplified pattern with `-F` flag (literal string match)
 - **User Warning**: "⚠️ Operations log parsing failed - using simplified search"
 - **Continue or Block**: CONTINUE with fallback
 - **Log Entry**: `[DATE] - ERROR - daily-roadmap - operations_log.txt parsing failed. Used fallback.`
@@ -328,14 +392,14 @@ Glob: Project Memory/Active Projects Index/*-index.md
 - **Log Entry**: `[DATE] - ERROR - productivity-assessment - .last_sync missing. Offering sync unconditionally.`
 
 **Error Scenario 2**: operations_log.txt has no entries for today
-- **Detection**: PowerShell Select-String returns empty results
+- **Detection**: grep returns empty results
 - **Fallback Behavior**: Assessment proceeds with "No work logged today" in Work Completed section
 - **User Warning**: None (valid scenario - user may not have worked yet)
 - **Continue or Block**: CONTINUE normally
 - **Log Entry**: None (not an error)
 
 **Error Scenario 3**: File modification search fails
-- **Detection**: PowerShell Get-ChildItem command exits with error
+- **Detection**: find command exits with error
 - **Fallback Behavior**: Skip file modification analysis, rely on operations_log.txt only
 - **User Warning**: "⚠️ File modification detection failed - assessment based on operations_log.txt only"
 - **Continue or Block**: CONTINUE (partial data still useful)
@@ -384,12 +448,12 @@ Glob: Project Memory/Active Projects Index/*-index.md
 - **Continue or Block**: CONTINUE (sync completed, but tracking broken)
 - **Log Entry**: `[DATE] - ERROR - sync-indices - Failed to write .last_sync: [reason]. Staleness tracking not updated.`
 
-**Error Scenario 3**: PowerShell timestamp write fails
-- **Detection**: PowerShell command exits with error
-- **Fallback Behavior**: Retry with Write tool: `Get-Date -Format 'yyyy-MM-dd HH:mm:ss'` manually, then Write tool
-- **User Warning**: "⚠️ PowerShell timestamp write failed - using fallback method"
+**Error Scenario 3**: Bash timestamp write fails
+- **Detection**: Bash command exits with error
+- **Fallback Behavior**: Retry with Write tool: `date '+%Y-%m-%d %H:%M:%S'` manually, then Write tool
+- **User Warning**: "⚠️ Bash timestamp write failed - using fallback method"
 - **Continue or Block**: CONTINUE with fallback
-- **Log Entry**: `[DATE] - WARNING - sync-indices - PowerShell timestamp failed. Used Write tool fallback.`
+- **Log Entry**: `[DATE] - WARNING - sync-indices - Bash timestamp failed. Used Write tool fallback.`
 
 ---
 
@@ -398,10 +462,10 @@ Glob: Project Memory/Active Projects Index/*-index.md
 **1. Tool Selection Hierarchy (Prefer Most Reliable)**:
 - **Read tool**: Always succeeds with clear "File does not exist" message (most reliable)
 - **Glob tool**: Pattern matching without shell errors (very reliable)
-- **PowerShell commands**: Can fail due to syntax, permissions, environment (use as last resort)
+- **Bash commands**: Can fail due to syntax, permissions, environment (use as last resort)
 
 **2. Pre-Execution Validation**:
-- Before PowerShell command: Check file exists (Read tool), validate path format
+- Before bash command: Check file exists (Read tool), validate path format
 - Before date calculations: Verify .last_sync content format matches `YYYY-MM-DD HH:MM:SS`
 - Before regex operations: Test pattern on sample data first
 
@@ -418,7 +482,7 @@ Glob: Project Memory/Active Projects Index/*-index.md
 - **Critical Errors**: Use 🚨 emoji, explain urgency, provide fix instructions
 
 **5. Retry Strategy**:
-- **PowerShell failures**: Retry with fallback method (Read tool, Glob tool, manual parsing)
+- **Bash failures**: Retry with fallback method (Read tool, Glob tool, manual parsing)
 - **File read failures**: Try alternative files (e.g., if latest strategic plan missing, try previous week)
 - **Date parsing failures**: Retry with different date format, then use current date as fallback
 
@@ -1203,9 +1267,9 @@ When working at ROOT level:
       - Parse timestamp (e.g., "2025-11-07 10:30:00")
       - Compare to current date
       - Calculate difference: X days
-      - Use PowerShell for calculation if needed:
-        ```powershell
-        powershell -Command "$content = Get-Content 'Project Memory\Active Projects Index\.last_sync' -Raw; $lastSync = [datetime]::ParseExact($content.Trim(), 'yyyy-MM-dd HH:mm:ss', $null); $daysSince = (New-TimeSpan -Start $lastSync -End (Get-Date)).Days; Write-Output $daysSince"
+      - Use bash for calculation if needed:
+        ```bash
+        last=$(cat "Project Memory/Active Projects Index/.last_sync" 2>/dev/null | tr -d '[:space:]'); if [ -n "$last" ]; then last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last" +%s 2>/dev/null || echo 0); now=$(date +%s); echo $(( (now - last_epoch) / 86400 )); else echo 999; fi
         ```
 
    c. **Apply staleness rules**:
@@ -1235,9 +1299,9 @@ When working at ROOT level:
 
    **operations_log.txt** (TIME-BOUNDED - Last 24 Hours Only):
    - Parse ONLY yesterday's entries (YYYY-MM-DD 00:00:00 to 23:59:59)
-   - Use PowerShell for date filtering:
-     ```powershell
-     powershell -Command "Select-String -Path 'operations_log.txt' -Pattern '^\[2025-11-13' | Select-Object -ExpandProperty Line"
+   - Use grep for date filtering:
+     ```bash
+     grep "^\[2025-11-13" operations_log.txt
      ```
      (Replace date with yesterday's date dynamically)
    - Extract action types: CREATE, UPDATE, COMPLETE, GRADUATE, LAUNCH_WEEK, PUBLISH, ARCHIVE
@@ -1270,7 +1334,7 @@ When working at ROOT level:
      - If `is_blocked: false` AND `status: active` → READY category
 
    **File Modifications** (Yesterday Only):
-   - Find files modified yesterday using PowerShell
+   - Find files modified yesterday using find command
    - Exclude system files: *-index.md, *-template.md, CLAUDE.md, README.md, operations_log.txt
    - Group by project: Extract project folder name from path
    - For each file: Note path (for "where was I?" quick access in roadmap)
@@ -1719,7 +1783,7 @@ Claude invokes ruthless-prioritizer (if available), returns THE ONE THING + prio
       - Parse timestamp
       - Compare to current date
       - Calculate difference in days
-      - Use PowerShell if needed (same command as Daily Roadmap)
+      - Use bash if needed (same command as Daily Roadmap)
 
    c. **Conditions** (both must be true):
       1. Indices >7 days stale
@@ -1775,9 +1839,9 @@ Claude invokes ruthless-prioritizer (if available), returns THE ONE THING + prio
       - Parse timestamp
       - Compare to current date
       - Calculate difference in days
-      - Use PowerShell if needed:
-        ```powershell
-        powershell -Command "$content = Get-Content 'Project Memory\Active Projects Index\.last_sync' -Raw; $lastSync = [datetime]::ParseExact($content.Trim(), 'yyyy-MM-dd HH:mm:ss', $null); $daysSince = (New-TimeSpan -Start $lastSync -End (Get-Date)).Days; Write-Output $daysSince"
+      - Use bash if needed:
+        ```bash
+        last=$(cat "Project Memory/Active Projects Index/.last_sync" 2>/dev/null | tr -d '[:space:]'); if [ -n "$last" ]; then last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last" +%s 2>/dev/null || echo 0); now=$(date +%s); echo $(( (now - last_epoch) / 86400 )); else echo 999; fi
         ```
 
    c. **If >7 days stale**: STOP and prompt (BLOCKING)
