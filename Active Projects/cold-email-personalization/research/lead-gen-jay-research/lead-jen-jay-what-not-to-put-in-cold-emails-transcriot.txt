@@ -1,0 +1,829 @@
+WEBVTT
+
+1
+00:00:00.115 --> 00:00:02.845
+Okay, what you send is the most important factor
+
+2
+00:00:03.065 --> 00:00:05.525
+for delivering a cold email as I showed you earlier
+
+3
+00:00:05.705 --> 00:00:08.685
+and demonstrated the fastest way to go to spam is
+
+4
+00:00:08.685 --> 00:00:10.445
+to say words that trigger a spam trap.
+
+5
+00:00:10.505 --> 00:00:12.045
+So how do you know which words to avoid?
+
+6
+00:00:12.235 --> 00:00:13.725
+Well, there's tools that you can use
+
+7
+00:00:13.725 --> 00:00:15.645
+and you start to learn these intuitively over time.
+
+8
+00:00:15.905 --> 00:00:17.845
+But if you are interested, there's a full list
+
+9
+00:00:18.065 --> 00:00:20.845
+of spam trap words and phrases that you can avoid.
+
+10
+00:00:20.875 --> 00:00:22.365
+It's gonna be available to you in
+
+11
+00:00:22.365 --> 00:00:23.845
+that giant resources document.
+
+12
+00:00:23.985 --> 00:00:26.045
+And there's some additional tools that you can use
+
+13
+00:00:26.235 --> 00:00:28.525
+that I typically reach for when I'm checking
+
+14
+00:00:28.665 --> 00:00:29.885
+for these spam trap words.
+
+15
+00:00:30.265 --> 00:00:31.685
+Now I just use my AI models
+
+16
+00:00:31.685 --> 00:00:34.605
+that you're also gonna have access to into the resources.
+
+17
+00:00:34.905 --> 00:00:38.405
+But some free things that you can use are the instantly ai.
+
+18
+00:00:38.745 --> 00:00:40.245
+So you can write your copy in here
+
+19
+00:00:40.345 --> 00:00:41.965
+and then have instantly check it
+
+20
+00:00:41.965 --> 00:00:43.405
+for you using their AI tools
+
+21
+00:00:43.595 --> 00:00:44.885
+that didn't use to work really well.
+
+22
+00:00:44.945 --> 00:00:47.525
+Now it tends to be okay, the tool that I used to recommend
+
+23
+00:00:47.705 --> 00:00:49.725
+and it's free and it still works really well,
+
+24
+00:00:49.905 --> 00:00:51.725
+is Mail Media's Spam Checker.
+
+25
+00:00:52.075 --> 00:00:55.165
+What is better is email guards spam checker.
+
+26
+00:00:55.165 --> 00:00:56.405
+You'll need an email guard account
+
+27
+00:00:56.405 --> 00:00:58.805
+and you can kind of come into Content spam checker.
+
+28
+00:00:58.895 --> 00:01:00.445
+It'll actually give you scores
+
+29
+00:01:00.865 --> 00:01:03.165
+and it's got a more extensive list of words
+
+30
+00:01:03.185 --> 00:01:04.565
+to avoid honestly.
+
+31
+00:01:04.585 --> 00:01:06.565
+Now that instantly has got theirs built right in,
+
+32
+00:01:06.885 --> 00:01:08.285
+I don't think you'll need to use anything else.
+
+33
+00:01:08.305 --> 00:01:10.845
+And they also help you replacing those spam words.
+
+34
+00:01:11.065 --> 00:01:13.165
+So it doesn't get much easier than that at at this point,
+
+35
+00:01:13.165 --> 00:01:14.485
+I would say let's just use instantly.
+
+36
+00:01:14.485 --> 00:01:17.965
+Alright, this is a sensitive topic using unsubscribe links
+
+37
+00:01:17.965 --> 00:01:19.005
+and opt out triggers.
+
+38
+00:01:19.105 --> 00:01:22.325
+So 2024, the advice was you need to use them
+
+39
+00:01:22.395 --> 00:01:25.765
+because it's the law and it increases deliverability.
+
+40
+00:01:26.345 --> 00:01:28.685
+We quickly learned that that is not true.
+
+41
+00:01:28.905 --> 00:01:32.685
+It actually kills your deliverability if you use any sort
+
+42
+00:01:32.685 --> 00:01:34.805
+of unsubscribe link or opt out language.
+
+43
+00:01:34.865 --> 00:01:37.485
+So as a general rule, avoid using unsubscribe
+
+44
+00:01:37.655 --> 00:01:38.805
+links of any kind.
+
+45
+00:01:39.065 --> 00:01:41.405
+And if you must add opt out language,
+
+46
+00:01:41.905 --> 00:01:43.445
+do it in a really delicate way.
+
+47
+00:01:43.445 --> 00:01:45.405
+And I'll give you some examples of what you can use.
+
+48
+00:01:45.405 --> 00:01:46.725
+Some pro tips for email.
+
+49
+00:01:46.905 --> 00:01:48.285
+One, don't use anything
+
+50
+00:01:48.515 --> 00:01:51.725
+that suggests they can opt out friends, don't email friends
+
+51
+00:01:51.725 --> 00:01:52.845
+with a way to opt out.
+
+52
+00:01:52.945 --> 00:01:54.525
+You can take the advice or leave it.
+
+53
+00:01:54.585 --> 00:01:56.805
+Now, some people in the comments are probably going to say
+
+54
+00:01:56.805 --> 00:01:59.565
+that you need to add a way to opt out or unsubscribe.
+
+55
+00:01:59.985 --> 00:02:02.125
+If people wanna opt out, they'll tell you that they want
+
+56
+00:02:02.125 --> 00:02:04.405
+to be removed and all you have to do is remove them.
+
+57
+00:02:04.585 --> 00:02:06.965
+In my decade plus of doing cold email,
+
+58
+00:02:07.285 --> 00:02:10.485
+I haven't seen a single instance where somebody got a fine
+
+59
+00:02:10.705 --> 00:02:11.805
+for sending a cold email,
+
+60
+00:02:11.835 --> 00:02:14.125
+even if it violated every CAN spam law.
+
+61
+00:02:14.345 --> 00:02:16.525
+But I will tell you that using opt-out language
+
+62
+00:02:16.525 --> 00:02:17.525
+or unsubscribe links
+
+63
+00:02:17.525 --> 00:02:20.285
+and email one will hurt your cold email results.
+
+64
+00:02:20.385 --> 00:02:23.245
+And remember, this stuff is hard enough as it is.
+
+65
+00:02:23.345 --> 00:02:26.005
+You want to give yourself every chance to be successful.
+
+66
+00:02:26.005 --> 00:02:28.605
+However, if we are using an extended sequence
+
+67
+00:02:28.665 --> 00:02:32.245
+and we're sending three emails, four emails, five emails,
+
+68
+00:02:32.465 --> 00:02:35.565
+you want to make sure to tell them that they can opt out.
+
+69
+00:02:35.665 --> 00:02:37.325
+And this is how I'll generally present it.
+
+70
+00:02:37.385 --> 00:02:38.765
+If I'm barking up the wrong tree,
+
+71
+00:02:38.875 --> 00:02:40.645
+just say away and I'll remove you.
+
+72
+00:02:40.745 --> 00:02:42.965
+Be careful not to use the word unsubscribe,
+
+73
+00:02:42.965 --> 00:02:45.165
+because again, the ESPs know what that is.
+
+74
+00:02:45.165 --> 00:02:46.925
+They're gonna detect that it's a cold email
+
+75
+00:02:47.065 --> 00:02:48.365
+and send you to spam.
+
+76
+00:02:48.425 --> 00:02:51.965
+But what a lot of people don't realize about emails two
+
+77
+00:02:52.305 --> 00:02:54.605
+and three is that you're already in the inbox.
+
+78
+00:02:54.785 --> 00:02:57.525
+If you do email one correctly, you've already made it
+
+79
+00:02:57.525 --> 00:02:58.965
+through the spam filters, you're
+
+80
+00:02:59.045 --> 00:03:00.565
+Already in their primary inbox
+
+81
+00:03:00.785 --> 00:03:02.565
+and almost every case, Google
+
+82
+00:03:02.665 --> 00:03:05.485
+and Microsoft aren't gonna take you out of their inbox
+
+83
+00:03:05.505 --> 00:03:07.565
+and put you in spam the third time
+
+84
+00:03:07.565 --> 00:03:08.565
+that you send them an email.
+
+85
+00:03:08.705 --> 00:03:10.405
+So once you're in the inbox the first time,
+
+86
+00:03:10.705 --> 00:03:11.765
+you can send a link.
+
+87
+00:03:11.825 --> 00:03:13.645
+You can add opt-out language if needed.
+
+88
+00:03:13.665 --> 00:03:16.645
+That's why instantly has this specific feature,
+
+89
+00:03:16.695 --> 00:03:20.085
+which is send first email as text only so
+
+90
+00:03:20.085 --> 00:03:22.845
+that you can send other stuff in emails two and three.
+
+91
+00:03:22.985 --> 00:03:25.765
+So what about sending calendar links or other links?
+
+92
+00:03:25.875 --> 00:03:28.725
+Well, generally I like to avoid sending any links in email.
+
+93
+00:03:28.825 --> 00:03:30.045
+One plain text only.
+
+94
+00:03:30.485 --> 00:03:32.285
+Remember, email one, your goal is to get inside
+
+95
+00:03:32.285 --> 00:03:34.645
+of their inbox and avoid spam at all costs.
+
+96
+00:03:34.985 --> 00:03:37.485
+Now, once you're in the inbox, like I said, emails two
+
+97
+00:03:37.485 --> 00:03:39.685
+and three also likely to be in the inbox.
+
+98
+00:03:39.785 --> 00:03:42.445
+So at this point you can consider sending links
+
+99
+00:03:42.445 --> 00:03:43.445
+after email one.
+
+100
+00:03:43.545 --> 00:03:45.965
+Now my recommendation is don't hyperlink anything.
+
+101
+00:03:45.985 --> 00:03:48.685
+You wanna send highly authoritative links such
+
+102
+00:03:48.685 --> 00:03:51.365
+as a YouTube link, a Calendly link, a Loom video.
+
+103
+00:03:51.735 --> 00:03:54.085
+These are links that are gonna establish trust.
+
+104
+00:03:54.085 --> 00:03:56.165
+People are familiar with those websites
+
+105
+00:03:56.225 --> 00:03:58.645
+and they know that they're not gonna get a virus
+
+106
+00:03:58.825 --> 00:04:00.205
+by clicking on a Calendly link.
+
+107
+00:04:00.265 --> 00:04:01.845
+And remember that the reputation
+
+108
+00:04:02.145 --> 00:04:05.445
+of the domain affects the deliverability and warnings.
+
+109
+00:04:05.465 --> 00:04:06.725
+So if you're a brand new company
+
+110
+00:04:07.225 --> 00:04:10.325
+and your website is cold, email monsters.com,
+
+111
+00:04:10.705 --> 00:04:13.645
+if you're sending them a link to your G Ghl calendar
+
+112
+00:04:13.705 --> 00:04:16.325
+and it's cold email monsters.com/book,
+
+113
+00:04:16.395 --> 00:04:19.045
+it's gonna have a much higher chance of going to spam.
+
+114
+00:04:19.065 --> 00:04:20.685
+And it's also gonna have a less of a chance
+
+115
+00:04:20.685 --> 00:04:22.445
+of getting clicked because people don't trust
+
+116
+00:04:22.445 --> 00:04:23.605
+that they don't know what it is.
+
+117
+00:04:23.705 --> 00:04:25.605
+So if you're gonna use links, make sure
+
+118
+00:04:25.605 --> 00:04:27.605
+that their links people are familiar with
+
+119
+00:04:27.665 --> 00:04:30.285
+and willing to click on, can you send pictures or videos?
+
+120
+00:04:30.955 --> 00:04:32.965
+Well, the answer is probably gonna surprise you.
+
+121
+00:04:32.965 --> 00:04:36.005
+And it's that if you think it'll help get the point across,
+
+122
+00:04:36.445 --> 00:04:38.765
+demonstrate your offer and improve reply rates,
+
+123
+00:04:39.235 --> 00:04:40.525
+then go ahead and try it.
+
+124
+00:04:40.545 --> 00:04:42.445
+Run a split test, just not an email one.
+
+125
+00:04:42.665 --> 00:04:45.685
+But the overall recommendation is no, we don't do it,
+
+126
+00:04:45.905 --> 00:04:47.205
+but I've done it successfully.
+
+127
+00:04:47.345 --> 00:04:49.005
+For example, have a client
+
+128
+00:04:49.005 --> 00:04:51.205
+and they sell commercial window
+
+129
+00:04:51.635 --> 00:04:53.125
+replacement and installation.
+
+130
+00:04:53.745 --> 00:04:55.285
+Now they identified a problem
+
+131
+00:04:55.285 --> 00:04:56.925
+that these commercial companies are having
+
+132
+00:04:56.925 --> 00:04:58.125
+with their existing windows,
+
+133
+00:04:58.305 --> 00:05:01.765
+and it's really hard to explain with words, really easy
+
+134
+00:05:01.865 --> 00:05:03.325
+to explain with a picture.
+
+135
+00:05:03.505 --> 00:05:06.045
+So we used it an email too, and it worked like crazy.
+
+136
+00:05:06.265 --> 00:05:07.845
+We got a ton of replies from that.
+
+137
+00:05:08.065 --> 00:05:10.525
+Not all pictures, not all videos are bad.
+
+138
+00:05:10.675 --> 00:05:12.045
+Just make sure that you're testing them
+
+139
+00:05:12.045 --> 00:05:14.285
+and make sure that you're not using them in email one.
+
+140
+00:05:14.345 --> 00:05:16.925
+And if you wanna send a video, make sure that it's a Vimeo
+
+141
+00:05:16.985 --> 00:05:18.925
+or a Loom or a YouTube.
+
+142
+00:05:19.145 --> 00:05:21.205
+And a really good way to approach the video
+
+143
+00:05:21.765 --> 00:05:22.965
+situation if you want to do it in email.
+
+144
+00:05:23.105 --> 00:05:25.765
+One is ask them if it's okay to send them a video.
+
+145
+00:05:25.905 --> 00:05:28.685
+That's a really good CTA 'cause all they have to say is yes.
+
+146
+00:05:28.705 --> 00:05:30.325
+And then you can send them that video.
+
+147
+00:05:30.325 --> 00:05:32.925
+Another really important deliverability point,
+
+148
+00:05:33.115 --> 00:05:35.765
+once they reply, it's no longer a cold email,
+
+149
+00:05:35.905 --> 00:05:37.885
+you now have an open dialogue with that person.
+
+150
+00:05:38.065 --> 00:05:40.885
+The ESP sees that you can send them whatever you want.
+
+151
+00:05:40.955 --> 00:05:42.525
+It's now an ongoing conversation.
+
+152
+00:05:42.795 --> 00:05:45.485
+This is the same reason you wanna respond from the instantly
+
+153
+00:05:45.765 --> 00:05:48.725
+uni box and not do mail forwarding to a different mailbox
+
+154
+00:05:49.345 --> 00:05:51.205
+and then respond from that other mailbox
+
+155
+00:05:51.595 --> 00:05:53.645
+because it's now no longer a dialogue.
+
+156
+00:05:53.645 --> 00:05:56.765
+And it's the first time you're sending an email from that
+
+157
+00:05:56.765 --> 00:05:57.845
+Mailbox to that lead.
+
+158
+00:05:57.875 --> 00:05:59.685
+That probably made more sense on the whiteboard earlier.
+
+159
+00:05:59.865 --> 00:06:01.685
+All right, so what about CAN spam laws?
+
+160
+00:06:01.985 --> 00:06:04.765
+The CAN SPAM Act is basically a consumer protection act
+
+161
+00:06:04.765 --> 00:06:07.405
+and it dictates how you can send cold emails.
+
+162
+00:06:07.555 --> 00:06:09.245
+It's basically saying cold email is legal
+
+163
+00:06:09.265 --> 00:06:10.445
+as long as you do it this way.
+
+164
+00:06:10.555 --> 00:06:12.445
+Some basic requirements that are relevant to you,
+
+165
+00:06:12.505 --> 00:06:15.245
+and feel free to go watch my video on CAN
+
+166
+00:06:15.525 --> 00:06:16.845
+SPAM breaking it down in detail.
+
+167
+00:06:17.065 --> 00:06:18.605
+But I don't think you need to. All you need
+
+168
+00:06:18.605 --> 00:06:20.485
+to know is they need a way to opt out.
+
+169
+00:06:20.745 --> 00:06:21.765
+You need a mailing address.
+
+170
+00:06:22.305 --> 00:06:25.205
+If they say stop or ask to be removed, you must remove them.
+
+171
+00:06:25.425 --> 00:06:27.005
+And the most important fact of all,
+
+172
+00:06:27.195 --> 00:06:28.445
+I've been doing this for over a decade.
+
+173
+00:06:28.635 --> 00:06:30.245
+I've worked with all of the biggest cold email
+
+174
+00:06:30.245 --> 00:06:31.405
+names in the business.
+
+175
+00:06:31.555 --> 00:06:33.765
+I've built hundreds of cold email systems, a lot
+
+176
+00:06:33.765 --> 00:06:35.725
+of which do not follow those rules
+
+177
+00:06:36.025 --> 00:06:37.685
+and have never heard of a single violation.
+
+178
+00:06:37.785 --> 00:06:39.805
+I'm gonna about to show you something pretty crazy.
+
+179
+00:06:40.105 --> 00:06:41.405
+So this is a psycho person.
+
+180
+00:06:41.595 --> 00:06:43.925
+It's a lawyer that we sent a cold email to,
+
+181
+00:06:44.105 --> 00:06:47.165
+and this was her reply report of abuse and violations.
+
+182
+00:06:47.705 --> 00:06:50.485
+She ended up being a lawyer that basically
+
+183
+00:06:51.075 --> 00:06:52.965
+attacks called Emailers,
+
+184
+00:06:53.465 --> 00:06:56.245
+and she emailed Google, Microsoft.
+
+185
+00:06:56.545 --> 00:07:00.165
+She emailed our domain registrar, our do our website host.
+
+186
+00:07:00.195 --> 00:07:02.365
+Everybody saying, these guys are in violation
+
+187
+00:07:02.365 --> 00:07:04.245
+of Can Spam Act of 2003.
+
+188
+00:07:04.635 --> 00:07:07.325
+Shut them down, find them. She emailed every authority.
+
+189
+00:07:07.785 --> 00:07:09.125
+And I was actually really scared
+
+190
+00:07:09.285 --> 00:07:11.245
+'cause this happened 2022,
+
+191
+00:07:11.565 --> 00:07:12.925
+I thought we were gonna get fined.
+
+192
+00:07:12.925 --> 00:07:14.525
+I thought they were gonna shut down our website.
+
+193
+00:07:14.765 --> 00:07:16.085
+I was so scared.
+
+194
+00:07:16.175 --> 00:07:18.885
+After all, she's an attorney, CEO, Institute
+
+195
+00:07:18.885 --> 00:07:20.525
+for Social Internet Public Policy
+
+196
+00:07:20.585 --> 00:07:21.965
+that's right on her signature.
+
+197
+00:07:22.265 --> 00:07:24.125
+So this absolutely terrified me
+
+198
+00:07:24.225 --> 00:07:25.325
+and I thought this was the end.
+
+199
+00:07:25.665 --> 00:07:27.565
+We can't send cold emails anymore.
+
+200
+00:07:28.065 --> 00:07:30.725
+And then we waited and we waited and we waited
+
+201
+00:07:31.065 --> 00:07:33.565
+and nothing, not an email from Google,
+
+202
+00:07:33.785 --> 00:07:35.205
+not an email from GoDaddy.
+
+203
+00:07:35.505 --> 00:07:36.805
+Not a single thing happened.
+
+204
+00:07:36.835 --> 00:07:39.205
+This is about as close as you could possibly get
+
+205
+00:07:39.345 --> 00:07:40.765
+to a real infraction.
+
+206
+00:07:40.765 --> 00:07:43.685
+This is a, an attorney emailing all of the proper people
+
+207
+00:07:43.685 --> 00:07:45.525
+with the proper evidence and nothing happened.

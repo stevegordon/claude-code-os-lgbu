@@ -1,0 +1,501 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.885
+So let's chat about cold email sequences.
+
+2
+00:00:02.115 --> 00:00:04.685
+This is the series of emails that you want your prospect
+
+3
+00:00:04.785 --> 00:00:06.845
+to receive over the course of several days.
+
+4
+00:00:06.945 --> 00:00:09.125
+Couple of overview notes before we really go deep.
+
+5
+00:00:09.305 --> 00:00:11.925
+The shorter the sequence, the more leads you can reach.
+
+6
+00:00:12.345 --> 00:00:15.405
+If the sequence is longer, it ends up emailing less people,
+
+7
+00:00:15.405 --> 00:00:18.485
+but more often if the sequence is shorter, you're able
+
+8
+00:00:18.485 --> 00:00:21.245
+to reach out to more people over a shorter period of time.
+
+9
+00:00:21.585 --> 00:00:24.125
+So what does that mean? If you've got a giant total
+
+10
+00:00:24.125 --> 00:00:26.645
+addressable market, you've got millions of people
+
+11
+00:00:26.645 --> 00:00:29.325
+that you can reach out to, you might want to reach out
+
+12
+00:00:29.325 --> 00:00:31.565
+to more people over a short period of time,
+
+13
+00:00:31.565 --> 00:00:33.045
+you'll generate more leads that way.
+
+14
+00:00:33.055 --> 00:00:35.405
+Shoot more arrows. More likely than not one
+
+15
+00:00:35.405 --> 00:00:38.085
+of those people is going to be a better fit rather than
+
+16
+00:00:38.085 --> 00:00:40.525
+emailing the same person who's probably not a good fit
+
+17
+00:00:40.645 --> 00:00:42.445
+'cause they didn't answer your first email a
+
+18
+00:00:42.445 --> 00:00:43.645
+second and a third time.
+
+19
+00:00:43.645 --> 00:00:46.125
+Important to note that email one is almost always
+
+20
+00:00:46.145 --> 00:00:47.325
+the best performing email.
+
+21
+00:00:47.425 --> 00:00:50.125
+Not always, but usually. And the more emails you send,
+
+22
+00:00:50.385 --> 00:00:52.645
+the higher the likelihood that they're going to report you
+
+23
+00:00:52.645 --> 00:00:55.285
+as spam, which is why now we typically stop
+
+24
+00:00:55.285 --> 00:00:57.565
+after a three email sequence Max.
+
+25
+00:00:57.835 --> 00:01:00.525
+Last bullet point here, test, test, test.
+
+26
+00:01:00.715 --> 00:01:03.605
+This is really where you want to ab test your butt off
+
+27
+00:01:03.605 --> 00:01:06.605
+and you should constantly be running ab tests on all
+
+28
+00:01:06.605 --> 00:01:07.685
+of the different variations
+
+29
+00:01:07.705 --> 00:01:09.085
+and ways to present your sequence.
+
+30
+00:01:09.085 --> 00:01:11.565
+Alright, let's get back to cold email sequences.
+
+31
+00:01:11.745 --> 00:01:14.845
+The most common scenario is the three email sequence,
+
+32
+00:01:14.845 --> 00:01:16.885
+and this is primarily what we're using nowadays.
+
+33
+00:01:17.095 --> 00:01:20.485
+Email one, we're using the triple tap preview text body
+
+34
+00:01:20.965 --> 00:01:22.285
+CTA and tests like crazy.
+
+35
+00:01:22.435 --> 00:01:23.845
+Lots of ab tests and I'll show you
+
+36
+00:01:23.845 --> 00:01:24.885
+how to do that once we get there.
+
+37
+00:01:24.975 --> 00:01:26.485
+Email two is a simple nudge
+
+38
+00:01:26.485 --> 00:01:28.005
+and I'm gonna show you some examples of that
+
+39
+00:01:28.065 --> 00:01:29.605
+and you're gonna send it in the same thread
+
+40
+00:01:29.605 --> 00:01:31.565
+as email one and then email three.
+
+41
+00:01:31.985 --> 00:01:33.725
+You can either send it in the same thread
+
+42
+00:01:33.785 --> 00:01:34.805
+or a separate thread,
+
+43
+00:01:34.905 --> 00:01:36.125
+but this is really where you want
+
+44
+00:01:36.125 --> 00:01:37.485
+to dump the information on them.
+
+45
+00:01:37.735 --> 00:01:40.245
+First, two emails, you wanna avoid the dumping email.
+
+46
+00:01:40.245 --> 00:01:42.205
+Three dump 'cause they might be skeptical,
+
+47
+00:01:42.275 --> 00:01:43.565
+they might want more information.
+
+48
+00:01:43.815 --> 00:01:46.005
+Now's your chance. If you have a video explaining your
+
+49
+00:01:46.005 --> 00:01:48.205
+service, if you've got special features
+
+50
+00:01:48.205 --> 00:01:51.205
+that you think are valuable, if you've got case study links,
+
+51
+00:01:51.535 --> 00:01:54.725
+now's the time to drop all of them inside of email.
+
+52
+00:01:54.725 --> 00:01:56.685
+Three, this is the general structure that I follow.
+
+53
+00:01:56.875 --> 00:01:58.565
+Obviously what you say in each
+
+54
+00:01:58.565 --> 00:02:00.045
+of those emails, that's the nuance.
+
+55
+00:02:00.225 --> 00:02:01.365
+The nuance is what changes.
+
+56
+00:02:01.585 --> 00:02:03.845
+And then you're gonna space them out somewhere between two
+
+57
+00:02:03.845 --> 00:02:05.245
+and five days per email.
+
+58
+00:02:05.305 --> 00:02:07.965
+As a general rule, if you do that, you should be good to go.
+
+59
+00:02:07.965 --> 00:02:09.885
+Everything else is nuance and testing.
+
+60
+00:02:09.995 --> 00:02:12.565
+There's no right answer for how long a sequence should be.
+
+61
+00:02:12.725 --> 00:02:15.485
+I would say max three emails you can do as little as one.
+
+62
+00:02:15.595 --> 00:02:17.205
+Yeah, you can do as little as one email
+
+63
+00:02:17.225 --> 00:02:18.245
+in an entire sequence.
+
+64
+00:02:18.245 --> 00:02:19.725
+That way you can just maximize
+
+65
+00:02:19.745 --> 00:02:21.165
+how many people you're reaching out to.
+
+66
+00:02:21.265 --> 00:02:23.845
+But I would recommend the minimum two, maximum three.
+
+67
+00:02:23.945 --> 00:02:25.085
+And here's what one of those email
+
+68
+00:02:25.365 --> 00:02:26.485
+sequences actually looks like.
+
+69
+00:02:26.655 --> 00:02:29.525
+We've got email one that's doing exactly what I said.
+
+70
+00:02:29.815 --> 00:02:31.965
+We've got email two, which is just a bump.
+
+71
+00:02:31.995 --> 00:02:33.125
+This is what it actually looks like.
+
+72
+00:02:33.155 --> 00:02:34.645
+Just touching base here. If you had a chance
+
+73
+00:02:34.645 --> 00:02:36.525
+to review my last email, let me know.
+
+74
+00:02:36.525 --> 00:02:38.645
+Or can I pro provide some additional information
+
+75
+00:02:39.025 --> 00:02:41.165
+and then email three less of a dump here,
+
+76
+00:02:41.165 --> 00:02:42.685
+but normally I would recommend dumping.
+
+77
+00:02:42.705 --> 00:02:45.045
+All right, so when should you use the short email sequences?
+
+78
+00:02:45.045 --> 00:02:46.485
+This is the one to two emails.
+
+79
+00:02:46.665 --> 00:02:48.645
+You've got a large tam, millions
+
+80
+00:02:48.645 --> 00:02:49.845
+of people that could be good fits.
+
+81
+00:02:49.845 --> 00:02:51.525
+You've got access to cheap lead data
+
+82
+00:02:51.745 --> 00:02:53.685
+and you wanna hit as many people as possible,
+
+83
+00:02:53.695 --> 00:02:55.725
+which will give you honestly the best shot at
+
+84
+00:02:55.725 --> 00:02:56.805
+booking the most meetings.
+
+85
+00:02:56.955 --> 00:02:59.085
+This is good if you have fewer mailboxes,
+
+86
+00:02:59.165 --> 00:03:00.685
+You're trying to run a lean system.
+
+87
+00:03:00.865 --> 00:03:02.725
+Or if you've got tons of lead data
+
+88
+00:03:02.785 --> 00:03:06.005
+and you wanna reach more leads, faster extended sequences.
+
+89
+00:03:06.075 --> 00:03:08.685
+This is the sequences that are four to seven emails.
+
+90
+00:03:08.905 --> 00:03:11.245
+You should only consider using these if you've got a
+
+91
+00:03:11.245 --> 00:03:12.525
+really small tam.
+
+92
+00:03:12.705 --> 00:03:14.045
+The other scenario where this is kind
+
+93
+00:03:14.045 --> 00:03:16.285
+of okay is if you have a lot of social proof
+
+94
+00:03:16.385 --> 00:03:18.245
+and you've got a lot of lead magnets.
+
+95
+00:03:18.305 --> 00:03:19.885
+So each email they're receiving,
+
+96
+00:03:20.035 --> 00:03:22.405
+they're actually enjoying receiving and they're different
+
+97
+00:03:22.405 --> 00:03:23.685
+and they're providing some value.
+
+98
+00:03:24.225 --> 00:03:25.245
+And you have a way
+
+99
+00:03:25.245 --> 00:03:27.605
+to opt out if you're using extended sequences.
+
+100
+00:03:27.755 --> 00:03:30.885
+Each email should have some, some form of new social proof
+
+101
+00:03:31.145 --> 00:03:33.045
+and some new value or lead magnet.
+
+102
+00:03:33.265 --> 00:03:35.365
+And you should be pulling at different pain levers.
+
+103
+00:03:35.595 --> 00:03:40.085
+Different pain levers are, you know, money, speed, prestige,
+
+104
+00:03:40.465 --> 00:03:42.645
+all the different things that could be triggering them
+
+105
+00:03:42.645 --> 00:03:43.645
+to want to buy your thing.
+
+106
+00:03:43.825 --> 00:03:45.845
+You should be testing them and see what resonates.
+
+107
+00:03:46.025 --> 00:03:48.925
+You can also try and employ different sales strategies
+
+108
+00:03:49.025 --> 00:03:50.045
+and different emails.
+
+109
+00:03:50.385 --> 00:03:54.005
+For example, value dropping. Here's why it's so valuable.
+
+110
+00:03:54.065 --> 00:03:55.405
+And stacking the benefits.
+
+111
+00:03:55.825 --> 00:03:58.325
+You can try and resonate with the person you're emailing.
+
+112
+00:03:58.635 --> 00:04:00.405
+Tell your story how you came up with it.
+
+113
+00:04:00.455 --> 00:04:02.245
+Maybe they'll find some common ground with you.
+
+114
+00:04:02.345 --> 00:04:03.925
+You try scarcity. I wouldn't.
+
+115
+00:04:04.065 --> 00:04:05.125
+But you could say, you know,
+
+116
+00:04:05.125 --> 00:04:06.405
+I'm only taking a few more clients.
+
+117
+00:04:06.585 --> 00:04:08.125
+Uh, let me know by tomorrow.
+
+118
+00:04:08.125 --> 00:04:09.485
+If you want to get on board, it could work.
+
+119
+00:04:09.485 --> 00:04:10.645
+Depending on who you're emailing,
+
+120
+00:04:10.715 --> 00:04:13.405
+just make sure if you're using an extended sequence,
+
+121
+00:04:13.405 --> 00:04:16.205
+they're offering new value with every email.
+
+122
+00:04:16.345 --> 00:04:19.005
+And make sure to stop the extended sequences.
+
+123
+00:04:19.025 --> 00:04:21.565
+If you see spam, go up and reply rates go down.
+
+124
+00:04:21.665 --> 00:04:24.365
+And remember, you'll monitor that in your deliverability
+
+125
+00:04:24.365 --> 00:04:25.245
+testing automation.

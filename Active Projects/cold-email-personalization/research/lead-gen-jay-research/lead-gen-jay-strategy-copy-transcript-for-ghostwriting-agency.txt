@@ -1,0 +1,723 @@
+**CONTEXT:** This is a transcript of a call where Lead Gen Jay provides strategy and copywriting consulting for a cold email campaign for a ghostwriting agency similar to my business: Million Dollar Author.
+
+WEBVTT
+
+1
+00:00:00.115 --> 00:00:03.445
+This client does ghost writing services, writes books
+
+2
+00:00:03.505 --> 00:00:05.805
+for CEOs, coaches, consultants,
+
+3
+00:00:06.145 --> 00:00:07.765
+and it's kind of an interesting offer
+
+4
+00:00:07.775 --> 00:00:09.645
+where he doesn't write their book.
+
+5
+00:00:09.675 --> 00:00:11.565
+It's like coaching for writing the book.
+
+6
+00:00:11.825 --> 00:00:13.405
+So that's their lead magnet
+
+7
+00:00:13.585 --> 00:00:15.165
+and they have a book that will go over everything,
+
+8
+00:00:15.185 --> 00:00:16.565
+but they do have a team of ghost writers.
+
+9
+00:00:16.565 --> 00:00:18.005
+They'll do it completely for you.
+
+10
+00:00:18.385 --> 00:00:20.965
+You can be as hands-off or hands-on as you'd
+
+11
+00:00:20.965 --> 00:00:21.965
+Like. Nice. So
+
+12
+00:00:21.965 --> 00:00:22.485
+I was actually
+
+13
+00:00:22.485 --> 00:00:24.125
+brainstorming some lead magnets for him.
+
+14
+00:00:24.355 --> 00:00:26.045
+This is a really good use case
+
+15
+00:00:26.145 --> 00:00:28.165
+to build like a copywriting lead magnet.
+
+16
+00:00:28.545 --> 00:00:31.165
+He might need to like pay extra for us to do this.
+
+17
+00:00:31.525 --> 00:00:33.885
+I wanna build them kind of what we have with our
+
+18
+00:00:34.395 --> 00:00:35.845
+free article lead magnet.
+
+19
+00:00:35.955 --> 00:00:39.925
+Basically you answer a few questions about your business,
+
+20
+00:00:39.925 --> 00:00:42.085
+your expertise, and we'll write the title
+
+21
+00:00:42.305 --> 00:00:43.525
+and outline for your book.
+
+22
+00:00:43.665 --> 00:00:45.005
+And I can automate that whole thing.
+
+23
+00:00:45.285 --> 00:00:47.045
+I think you'll get a ton of yeses with that
+
+24
+00:00:47.065 --> 00:00:48.805
+and it'll be really easy to, to do.
+
+25
+00:00:48.865 --> 00:00:51.365
+Uh, but that is something I'd have to like, have to build,
+
+26
+00:00:51.365 --> 00:00:53.605
+wouldn't take too long, but I think it would make his
+
+27
+00:00:53.965 --> 00:00:55.285
+campaign unbelievably successful.
+
+28
+00:00:55.315 --> 00:00:58.845
+Another thing I want to try AI personalization in this one.
+
+29
+00:00:59.035 --> 00:01:00.725
+Kind of like what I did in my,
+
+30
+00:01:01.205 --> 00:01:03.365
+I did a a podcast email sequence to try
+
+31
+00:01:03.365 --> 00:01:04.525
+and get myself booked on shows
+
+32
+00:01:04.825 --> 00:01:07.445
+and it would basically look at information on the host
+
+33
+00:01:07.625 --> 00:01:09.685
+and the podcast, which I, I already had
+
+34
+00:01:09.825 --> 00:01:12.445
+and it would generate an episode title combining their
+
+35
+00:01:12.555 --> 00:01:15.125
+podcast information with my field of expertise
+
+36
+00:01:15.465 --> 00:01:17.765
+and it's most successful campaign that I've run.
+
+37
+00:01:18.025 --> 00:01:20.605
+So if we can use the AI personalization
+
+38
+00:01:20.705 --> 00:01:24.285
+and instantly to generate a book title for them.
+
+39
+00:01:24.665 --> 00:01:27.965
+My question there is I don't know if we can get
+
+40
+00:01:27.965 --> 00:01:30.605
+that information about the person in Apollo
+
+41
+00:01:30.605 --> 00:01:31.885
+to write a book title for them.
+
+42
+00:01:32.145 --> 00:01:34.885
+We can probably know a little bit about the business based
+
+43
+00:01:34.885 --> 00:01:37.405
+on the industry SEO keywords if they have it.
+
+44
+00:01:37.405 --> 00:01:39.685
+Yeah, keywords. Yeah. So I'd like to try that.
+
+45
+00:01:40.065 --> 00:01:43.885
+Try to use AI book title and cold email.
+
+46
+00:01:44.185 --> 00:01:45.325
+All right, so this is what's gonna
+
+47
+00:01:45.325 --> 00:01:46.365
+take it to like next level.
+
+48
+00:01:46.485 --> 00:01:47.645
+I think we can, we can do it.
+
+49
+00:01:47.655 --> 00:01:48.725
+Let's see what we came up with here.
+
+50
+00:01:48.755 --> 00:01:50.085
+Getting better at subject lines.
+
+51
+00:01:50.235 --> 00:01:53.525
+This is good impact with the book Ghost Writer or intro.
+
+52
+00:01:53.825 --> 00:01:55.565
+See if I can come up with any other subject lines
+
+53
+00:01:55.565 --> 00:01:59.125
+that we can try and email one if we do that AI book title.
+
+54
+00:01:59.465 --> 00:02:00.445
+All right, those will get opened.
+
+55
+00:02:00.705 --> 00:02:01.805
+Did you write this book Jay?
+
+56
+00:02:02.085 --> 00:02:05.365
+I think. Okay. Need to pair the first lines
+
+57
+00:02:05.365 --> 00:02:07.405
+with the corresponding subject line.
+
+58
+00:02:07.405 --> 00:02:09.605
+Of course for this one it would be the Ghost Writer intro.
+
+59
+00:02:09.955 --> 00:02:11.565
+This one's a little salesy for me.
+
+60
+00:02:11.795 --> 00:02:13.445
+It's, it's going straight into a pitch.
+
+61
+00:02:13.595 --> 00:02:15.605
+This is a strategy I like to use sometimes too.
+
+62
+00:02:15.605 --> 00:02:17.685
+Instead of starting with, Hey first name,
+
+63
+00:02:18.325 --> 00:02:20.565
+introducing the first name in the first line instead.
+
+64
+00:02:20.825 --> 00:02:22.725
+So what do you think about this book title I came
+
+65
+00:02:22.725 --> 00:02:23.805
+up for you, Sarah.
+
+66
+00:02:24.035 --> 00:02:25.325
+It's a little pattern interrupt.
+
+67
+00:02:25.325 --> 00:02:27.125
+People are very used to, Hey, first name.
+
+68
+00:02:27.125 --> 00:02:28.525
+They're not used to it when it doesn't
+
+69
+00:02:28.525 --> 00:02:29.645
+start with, Hey, first name.
+
+70
+00:02:29.715 --> 00:02:32.445
+Something to test. See that one will be with the book.
+
+71
+00:02:32.445 --> 00:02:34.365
+Title one. Did you write this book?
+
+72
+00:02:34.705 --> 00:02:36.005
+I'm gonna, I'm talking to him tonight
+
+73
+00:02:36.065 --> 00:02:38.125
+so I'm gonna see if he's okay
+
+74
+00:02:38.155 --> 00:02:40.285
+with me doing this lead magnet for him.
+
+75
+00:02:40.475 --> 00:02:42.725
+Okay. I think it'll be a huge investment for him.
+
+76
+00:02:42.905 --> 00:02:44.645
+All right, so let's come up with a generalized one.
+
+77
+00:02:44.705 --> 00:02:47.045
+If we are not doing those.
+
+78
+00:02:47.965 --> 00:02:50.725
+I heard you were thinking about writing a book.
+
+79
+00:02:50.945 --> 00:02:51.965
+We don't know if this person
+
+80
+00:02:51.965 --> 00:02:53.245
+already has a book or not, right?
+
+81
+00:02:53.435 --> 00:02:55.885
+True. So I was gonna say you should have a book,
+
+82
+00:02:55.885 --> 00:02:56.885
+but they might have a book.
+
+83
+00:02:57.245 --> 00:03:00.005
+I don't usually like starting with a vague congratulations,
+
+84
+00:03:00.005 --> 00:03:02.485
+like, congrats on your success at Lea on your
+
+85
+00:03:02.485 --> 00:03:03.765
+success as CEO.
+
+86
+00:03:04.065 --> 00:03:06.125
+But in this case it might fluff 'em up
+
+87
+00:03:06.125 --> 00:03:07.805
+and encourage them to write a book.
+
+88
+00:03:08.035 --> 00:03:10.125
+It's been working for one of our other campaigns too.
+
+89
+00:03:10.425 --> 00:03:14.285
+The fluff, the like title company in the first sentence,
+
+90
+00:03:14.505 --> 00:03:16.565
+it makes people feel important, your
+
+91
+00:03:16.715 --> 00:03:19.005
+Success as you should write a book
+
+92
+00:03:19.035 --> 00:03:20.245
+that'll make them feel important.
+
+93
+00:03:20.625 --> 00:03:23.365
+All right. And then when they reply bestseller,
+
+94
+00:03:23.365 --> 00:03:25.125
+does he want to send a lead magnet? I
+
+95
+00:03:25.125 --> 00:03:27.805
+Think we were just gonna have their sales team get from
+
+96
+00:03:27.805 --> 00:03:30.245
+there, but since there is so many lead magnets, yeah,
+
+97
+00:03:30.245 --> 00:03:32.645
+especially with the new instantly trigger.
+
+98
+00:03:33.105 --> 00:03:34.645
+Do I do this again? Strike
+
+99
+00:03:34.645 --> 00:03:37.045
+through this first email campaign's getting tricky
+
+100
+00:03:37.045 --> 00:03:39.085
+because we've got three different things I wanna
+
+101
+00:03:39.105 --> 00:03:40.205
+try within the same one.
+
+102
+00:03:40.345 --> 00:03:41.365
+So I make them different colors.
+
+103
+00:03:42.315 --> 00:03:45.445
+Generic is two to ghost.
+
+104
+00:03:45.535 --> 00:03:49.285
+Write a bestselling book in less than 30 days.
+
+105
+00:03:49.885 --> 00:03:51.965
+I think this sounds pricey.
+
+106
+00:03:52.615 --> 00:03:56.085
+Reply and I'll send over some.
+
+107
+00:03:56.385 --> 00:04:00.165
+All right, variation one. Now we're doing AI title.
+
+108
+00:04:00.645 --> 00:04:03.205
+I created this book title for you.
+
+109
+00:04:03.515 --> 00:04:06.445
+What if I told you we could ghost write
+
+110
+00:04:06.745 --> 00:04:11.245
+and turn this book into a bestseller in 30 days?
+
+111
+00:04:12.105 --> 00:04:13.965
+PS, if you hate the title,
+
+112
+00:04:14.425 --> 00:04:17.325
+you can reply telling me how much you hate it.
+
+113
+00:04:17.395 --> 00:04:21.925
+This will prompt a reply from people even if they do not
+
+114
+00:04:21.955 --> 00:04:24.125
+like the AI generated title.
+
+115
+00:04:24.275 --> 00:04:26.925
+Alright, so now let's do some copy.
+
+116
+00:04:27.265 --> 00:04:29.805
+If we are doing the high value lead magnet,
+
+117
+00:04:29.805 --> 00:04:32.365
+which I think we should do, I hope you don't mind,
+
+118
+00:04:32.785 --> 00:04:36.685
+but I took, do you feel like you should publish a book?
+
+119
+00:04:37.125 --> 00:04:39.485
+I think every executive
+
+120
+00:04:39.625 --> 00:04:42.325
+of your caliber absolutely should.
+
+121
+00:04:42.495 --> 00:04:47.125
+Publishing a bestseller has never been more accessible.
+
+122
+00:04:47.535 --> 00:04:49.445
+Don't like that line. I think every executive
+
+123
+00:04:49.505 --> 00:04:52.245
+of your caliber needs a best seller.
+
+124
+00:04:52.535 --> 00:04:56.605
+Would it be all right if I put together a book title
+
+125
+00:04:56.985 --> 00:05:00.205
+and complete outline for your next best seller,
+
+126
+00:05:00.495 --> 00:05:02.205
+which was reply best seller?
+
+127
+00:05:02.555 --> 00:05:06.325
+I'll send that over. Alright, so now we've got a body for
+
+128
+00:05:06.355 --> 00:05:08.085
+what the lead magnet is going to look like.
+
+129
+00:05:08.085 --> 00:05:11.445
+When they reply bestseller, we'll send them the instructions
+
+130
+00:05:11.545 --> 00:05:13.525
+and link to that lead magnet
+
+131
+00:05:13.785 --> 00:05:16.365
+and if they say book, then we'll send them some info
+
+132
+00:05:16.625 --> 00:05:18.965
+and a link to book a call.
+
+133
+00:05:18.995 --> 00:05:20.085
+Alright, so this is good
+
+134
+00:05:20.085 --> 00:05:22.325
+for email one email one's always the hardest email.
+
+135
+00:05:22.385 --> 00:05:25.005
+Two simple bump works really well. We can keep that.
+
+136
+00:05:25.585 --> 00:05:27.245
+Did you get my last email?
+
+137
+00:05:27.715 --> 00:05:30.965
+This is a great sentence for a email too.
+
+138
+00:05:31.305 --> 00:05:33.605
+Did you get my last email? Almost everybody opens that.
+
+139
+00:05:33.745 --> 00:05:35.085
+All right, let's look at email three.
+
+140
+00:05:35.315 --> 00:05:37.445
+This is also important. Uh, I don't like no time
+
+141
+00:05:37.445 --> 00:05:38.965
+because it's kind of deceiving.
+
+142
+00:05:39.065 --> 00:05:40.685
+Has nothing to do with the offer itself.
+
+143
+00:05:40.875 --> 00:05:42.325
+This is a little salesy opening up,
+
+144
+00:05:42.325 --> 00:05:44.045
+but it's email three something.
+
+145
+00:05:44.045 --> 00:05:46.805
+I wanna try. All right, this is where I'd probably go in
+
+146
+00:05:46.805 --> 00:05:50.445
+with the lead magnet and I think in this case we need a lead
+
+147
+00:05:50.445 --> 00:05:51.845
+magnet for email three.
+
+148
+00:05:52.035 --> 00:05:53.925
+Your book outline is ready.
+
+149
+00:05:54.385 --> 00:05:57.685
+Can we put your name on this book? That's good.
+
+150
+00:05:58.025 --> 00:06:00.525
+That's very good. We've got a team of ghost writers.
+
+151
+00:06:00.895 --> 00:06:03.325
+Eager is a very sales marketing word.
+
+152
+00:06:03.365 --> 00:06:05.405
+I don't like the word eager to craft a
+
+153
+00:06:05.405 --> 00:06:06.565
+compelling story for you.
+
+154
+00:06:06.565 --> 00:06:08.565
+This is all sales and promotional language,
+
+155
+00:06:08.985 --> 00:06:10.245
+not conversational language.
+
+156
+00:06:10.245 --> 00:06:11.485
+That's good for a cold email.
+
+157
+00:06:11.485 --> 00:06:15.485
+Alright, we have ready to publish a bestseller
+
+158
+00:06:15.945 --> 00:06:20.045
+but don't have the time to write and promote a book.
+
+159
+00:06:20.475 --> 00:06:21.765
+I've got you covered.
+
+160
+00:06:22.025 --> 00:06:25.765
+You're gonna be blown away at how fast
+
+161
+00:06:26.225 --> 00:06:28.605
+and reasonable this process is.
+
+162
+00:06:28.905 --> 00:06:33.605
+If it's okay with you, I'd like to send you a book title
+
+163
+00:06:33.825 --> 00:06:36.365
+and outline that I had in mind for you.
+
+164
+00:06:36.705 --> 00:06:39.085
+And then my team will finish with call to action.
+
+165
+00:06:39.225 --> 00:06:40.445
+But this is what we need to do.
+
+166
+00:06:40.555 --> 00:06:43.325
+This is a couple variations for email three, one
+
+167
+00:06:43.325 --> 00:06:46.005
+with the ebook lead magnet, one
+
+168
+00:06:46.035 --> 00:06:48.005
+with the lead magnet from step one.
+
+169
+00:06:48.145 --> 00:06:49.325
+Now we can test all of these things.
+
+170
+00:06:49.325 --> 00:06:50.765
+We've got multiple variations.
+
+171
+00:06:51.045 --> 00:06:53.485
+I think this is gonna work really well. Uh, the tricky part.
+
+172
+00:06:53.545 --> 00:06:55.005
+If we can get this AI book title
+
+173
+00:06:55.025 --> 00:06:56.285
+to work with the right prompt.
+
+174
+00:06:56.345 --> 00:06:58.445
+And if we can get this lead magnet developed,
+
+175
+00:06:58.805 --> 00:07:00.645
+I think this is going to be a hole in one.
+
+176
+00:07:00.805 --> 00:07:02.525
+A lot of people are going to want to see
+
+177
+00:07:02.555 --> 00:07:04.805
+what their book title and outline are.
+
+178
+00:07:05.105 --> 00:07:08.685
+All those people who opt in for that are now warm hot leads
+
+179
+00:07:08.825 --> 00:07:10.445
+and you can then follow up with these people
+
+180
+00:07:10.905 --> 00:07:11.885
+and get them booked.
