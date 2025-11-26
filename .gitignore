@@ -50,8 +50,14 @@ AI Growth Engine/Knowledge Base/*
 Project Memory/*
 !Project Memory/README.md
 !Project Memory/_Templates/
+!Project Memory/Active Projects Index/
 Active Projects/*
 !Active Projects/README.md
 !Active Projects/_Templates/
 !Active Projects/_Incubator/.gitkeep
+!Active Projects/*/CLAUDE.md
+!Active Projects/*/README.md
+!Active Projects/The Freedom Firm Insider/**
+!Active Projects/Pardon My French Macarons/**
+!Active Projects/cold-email-personalization/**
 EXPECTATIONS_SURVEY_SCRIPT.md
