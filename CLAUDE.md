@@ -308,6 +308,122 @@ Glob: Project Memory/Active Projects Index/*-index.md
 
 ---
 
+## OBSIDIAN MOBILE SYNC SYSTEM
+
+**Architecture**: Real folder sync (iOS sandboxing prevents symlinks)
+
+**Locations**:
+- **Source of Truth**: `Project Memory/` (in claude-code-os-lgbu) - Where Claude Code works
+- **Mobile Copy**: `iCloud Drive/Obsidian/Documents/Claude-Code-OS/` - Where Obsidian mobile reads
+
+**Sync Strategy**: Deterministic two-command approach (no ambiguous bidirectional sync)
+
+---
+
+### Push to Mobile (Before Using iPhone)
+
+**Natural Language Triggers** (You MUST recognize and execute):
+- "push to mobile" OR "sync to mobile" OR "sync to iphone"
+- "I'm about to use my iphone" OR "going mobile"
+- "push latest changes to obsidian mobile"
+
+**Action**: Run `/push-mobile` slash command OR execute:
+```bash
+bash scripts/push-to-mobile.sh
+```
+
+**What it does**:
+- Copies `Project Memory/` → `Obsidian/Documents/Claude-Code-OS/` (overwrites mobile copy)
+- Forces Mac as source of truth
+- Ensures iPhone has latest roadmaps, assessments, mobile captures
+
+**After running, tell user**:
+- "Wait 1-2 minutes for iCloud sync to iPhone"
+- "Then open Obsidian mobile - you'll have latest changes"
+- "Run /pull-mobile when done on iPhone"
+
+---
+
+### Pull from Mobile (After Using iPhone)
+
+**Natural Language Triggers** (You MUST recognize and execute):
+- "pull from mobile" OR "sync from mobile" OR "sync from iphone"
+- "I just used my iphone" OR "done with mobile"
+- "get my iphone changes" OR "pull mobile edits"
+
+**Action**: Run `/pull-mobile` slash command OR execute:
+```bash
+bash scripts/pull-from-mobile.sh
+```
+
+**What it does**:
+- Waits 5 seconds for iCloud sync to complete
+- Copies `Obsidian/Documents/Claude-Code-OS/` → `Project Memory/` (overwrites Mac copy)
+- Forces mobile as source of truth
+- Makes iPhone captures visible to Claude Code
+
+**After running, tell user**:
+- "iPhone changes now in Project Memory"
+- "I can now process mobile captures in daily roadmap"
+- "Ready to generate roadmap or productivity assessment"
+
+---
+
+### When to Proactively Sync
+
+**You MUST automatically offer pull-from-mobile when**:
+- User says "generate daily roadmap" AND mobile sync hasn't run in 6+ hours
+- User says "assess my productivity" AND mobile sync hasn't run in 6+ hours
+- User mentions iPhone/mobile/Obsidian mobile in ANY context
+
+**Example proactive offer**:
+```
+"Before generating your daily roadmap, should I pull latest changes from Obsidian mobile?
+This ensures I capture any mobile edits or captures from your iPhone. (5 seconds)"
+```
+
+---
+
+### Conflict Prevention Rules
+
+**CRITICAL**: These scripts use `--delete` flag (force overwrite, no merge)
+
+**To prevent data loss**:
+1. **Never edit same file on Mac AND iPhone between syncs**
+2. **Workflow order matters**:
+   - Push → Work on iPhone → Pull (correct)
+   - Push → Work on Mac → Push again → Pull (Mac changes lost!)
+3. **If user edited Mac files after push**:
+   - Warn before pull: "You edited files on Mac since last push. Pull will overwrite. Continue?"
+
+**Detection**: Track last sync timestamp (check `scripts/.last_sync_direction` file if created)
+
+---
+
+### Mobile Capture Integration
+
+**MOBILE_CAPTURE_INBOX.md** location: `Project Memory/Daily Planning/MOBILE_CAPTURE_INBOX.md`
+
+**Sections**:
+- **Quick Add**: One-liner task captures
+- **Voice Transcriptions**: From Whisprflow iOS Shortcut
+- **Meeting Notes**: Context-rich captures with details
+- **Archive**: Processed items (cleared weekly)
+
+**When to read**:
+- During Daily Roadmap generation (read Quick Add + Voice Transcriptions)
+- During Productivity Assessment (check for completed captures)
+- When user mentions "mobile captures" or "iphone notes"
+
+**Processing workflow**:
+1. Read MOBILE_CAPTURE_INBOX.md
+2. For each capture: Prompt for strategic context (project, priority, timeline)
+3. Add to appropriate section of daily roadmap OR FUTURE_TASKS.md
+4. Move processed items to Archive section
+5. Clear Archive weekly (during strategic planning)
+
+---
+
 ## ERROR HANDLING AND FALLBACK PROTOCOLS
 
 **Purpose**: Ensure all business operations workflows degrade gracefully when errors occur, preventing system failures from blocking critical operations.
@@ -1253,7 +1369,29 @@ When working at ROOT level:
    - "Generate daily roadmap" OR "Plan my day" OR "What should I work on today?"
    - **PROACTIVE**: Offer after syncing indices, after productivity assessment, or if >24 hours since last roadmap
 
-2. **CRITICAL STALENESS CHECK** (NEW - Fail-Proof Sync System):
+2. **VERIFY TARGET DATE** (MANDATORY - Prevents Day-of-Week Errors):
+
+   **BEFORE generating any roadmap content**, verify the target date programmatically:
+
+   ```bash
+   date -j -f "%Y-%m-%d" "YYYY-MM-DD" "+%A, %B %d, %Y"
+   ```
+
+   **Example**:
+   ```bash
+   date -j -f "%Y-%m-%d" "2025-11-26" "+%A, %B %d, %Y"
+   # Output: Wednesday, November 26, 2025
+   ```
+
+   **Rules**:
+   - Run this command BEFORE writing any roadmap content
+   - Use the output for ALL day-of-week references (title, filename, log entries)
+   - NEVER calculate day of week manually or assume based on context
+   - If generating for "tomorrow", first calculate tomorrow's date, then verify day of week
+
+   **Why This Matters**: Prevents day-of-week errors that confuse users and create incorrect records.
+
+3. **CRITICAL STALENESS CHECK** (Fail-Proof Sync System):
 
    **BEFORE data extraction**, check Active Projects Index staleness:
 
