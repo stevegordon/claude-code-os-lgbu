@@ -215,4 +215,57 @@ When automating processes in this project:
 
 ---
 
+## CLAY.COM PROMPT DEVELOPMENT - LESSONS LEARNED (Nov 25, 2025)
+
+### Key Discoveries
+
+**1. AI Output Format is Critical**
+- Complex prompts with many sections cause AI to return prose instead of structured data
+- Solution: Strip prompts to bare minimum, use explicit CORRECT/WRONG examples
+- The simpler the prompt, the more reliable the output format
+
+**2. "Good Enough is Good Enough"**
+- Early prompts caused AI to find content but return "no results" because it kept searching for "better"
+- Solution: Add explicit instruction to STOP when valid content found
+- Key line: "Good enough is good enough. If you found content featuring this person, return it."
+
+**3. Output Format Enforcement**
+- Even with format instructions, AI adds labels like "research_url:" before URLs
+- Solution: Show explicit examples of CORRECT vs WRONG output
+- For URL-only output: "Just the URL. No labels. No text before or after."
+
+**4. Model Selection Matters**
+- Haiku: Fast/cheap but unreliable for verification logic and judgment calls
+- Sonnet: Best balance for production (recommended)
+- Opus: Overkill for most leads, reserve for high-value targets
+
+**5. Content Quality for Personalization**
+- Not all thought leadership is usable (podcasts without transcripts = no extractable text)
+- Solution: Prioritize written content > video with captions > podcasts with show notes > audio-only
+- Added `specificInsight` quality rules with GOOD/BAD examples
+
+### Production-Ready Prompts
+
+Located in `prompts/`:
+1. **clay-thought-leadership-search.md** - Finds URLs (podcasts, articles, videos)
+2. **clay-content-extraction-for-personalization.md** - Extracts contentType, topic, specificInsight, platform
+
+### Integration Points
+
+| Variable | Source | Used In |
+|----------|--------|---------|
+| `{{research_url}}` | Thought leadership search | Content extraction input |
+| `{contentType}` | Content extraction | Email body: "I {read} your {contentType}..." |
+| `{topic}` | Content extraction | Email body + subject line |
+| `{specificInsight}` | Content extraction | Email body personalization |
+| `{platform}` | Content extraction | Subject line: "Quick question about your {platform} content" |
+
+### Testing Status
+
+- QA test output: `prompts/Clay Prompt Development/email-qa-test-output.md`
+- Sample leads tested: 4 (Harrison Brooks, Mark Crites, Jennifer Becker, Dave Sobocinski)
+- Results: Prompts working, some specificInsight refinement needed for sharper quotes
+
+---
+
 **Your role when working in this project**: Help develop a scalable, effective cold email personalization system that balances efficiency with genuine personalization, directly addressing our #1 business constraint.
