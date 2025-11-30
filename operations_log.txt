@@ -64,3 +64,4 @@ Actions: CREATE, UPDATE, SYNC, COMPLETE, GRADUATE, ARCHIVE, SYSTEM_UPGRADE
 [2025-11-26 11:14:35] - COMPLETE - freedom-firm-insider - FFI-010 newsletter written and ready for Saturday Nov 30 publication. Thanksgiving theme.
 [2025-11-26 11:51:00] - COMPLETE - payroll - November payroll processed, Kara paid, expense reimbursements handled.
 [2025-11-26 11:51:00] - CREATE - freedom-firm-insider - FFI-011 brainstorm and outline started. First draft to be reviewed next week (Dec 2+).
+[2025-11-30 14:39:03] - CREATE - freedom-firm-insider - FFI #011 'How to Build a Moat AI Can't Cross' drafted and finalized. Topics: Naming as creation (Genesis parallel), Visibility Paradox, IP-First positioning. Client examples: Roger Sitkins, John Curry, MC Laubscher.
